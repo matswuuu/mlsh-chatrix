@@ -1,0 +1,65 @@
+.box-auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.052rem;
+    width: 100%;
+    height: auto;
+}
+
+.box-input {
+    transition: 0.2s;
+    background: var(--light-gray);
+    max-width: 100%;
+    height: auto;
+    box-sizing: border-box;
+    border-radius: 0.263rem;
+}
+
+.box-input input {
+    transition: 0.2s;
+    box-sizing: border-box;
+    width: 100%;
+    background: var(--graphite);
+    padding: 0.684rem 0.736rem 0.684rem 0.736rem;
+    border: solid 1px var(--light-gray);
+    border-radius: 0.263rem;
+    display: block;
+    font-size: 0.947rem;
+    color: var(--white);
+}
+
+.box-input input:hover {
+    transition: 0.2s;
+    border: solid 1px var(--sun-gray);
+}
+
+.box-input input:focus {
+    transition: 0.2s;
+    border: solid 1px var(--sun-gray);
+}
+
+.box-input text {
+    text-align: left;
+    transition: 0.2s;
+    display: none;
+    font-size: 0.736rem;
+    padding: 0.368rem 0.684rem;
+}
+
+.box-input text:empty {
+    display: none;
+}
+
+.box-input input:-webkit-autofill,
+.box-input input:-webkit-autofill:hover,
+.box-input input:-webkit-autofill:active,
+.box-input input:-webkit-autofill:focus,
+.box-input input:autofill {
+    background-color: var(--graphite);
+    border: solid 1px var(--light-gray);
+    font-size: 0.947rem;
+}
+
+.box-input-active text {
+    display: block;
+}

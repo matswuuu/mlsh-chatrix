@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: "mlsh-chatrix"
+  graphql:
+    cors:
+      allow-credentials: true
+      allowed-origins:
+        - "http://localhost:5173"
+    graphiql:
+      enabled: true
+  data:
+    mongodb:
+      database: "mlsh-chatrix"
+      uri: "${MONGODB_URI}"
+      uuid-representation: standard

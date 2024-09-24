@@ -1,0 +1,27 @@
+type Query {
+    userById(id: ID!): User
+    userByEmail(email: String!): User
+    userByFirstName(firstName: String!): User
+    userByMiddleName(middleName: String!): User
+    userByLastName(lastName: String!): User
+    userByChatId(chatId: Int!): User
+}
+
+type Mutation {
+    createUser(
+        email: String = ""
+        firstName: String!
+        middleName: String = ""
+        lastName: String!
+    ): User
+}
+
+type User {
+    id: ID!
+    imageUrl: String
+    email: String
+    firstName: String!
+    middleName: String
+    lastName: String!
+    chatList: [Int]!
+}

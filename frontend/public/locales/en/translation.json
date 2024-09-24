@@ -1,0 +1,28 @@
+{
+  "test": "тестовое сообщение",
+  "registration": {
+    "input": {
+      "email": {
+        "placeholder": "E-Mail",
+        "error": "Некорректный E-Mail"
+      },
+      "first-name": {
+        "placeholder": "Имя"
+      },
+      "middle-name": {
+        "placeholder": "Отчество"
+      },
+      "last-name": {
+        "placeholder": "Фамилия"
+      },
+      "password": {
+        "placeholder": "Пароль",
+        "error": "Пароли не совпадают"
+      },
+      "repeat-password": {
+        "placeholder": "Повтор пароля",
+        "error": "Пароли не совпадают"
+      }
+    }
+  }
+}
