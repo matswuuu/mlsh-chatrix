@@ -15,21 +15,9 @@ function App() {
     }
 
     return (
-        <div>
-            <h1>{t('test')}</h1>
-            <h3>
-                Current Language: {currentLanguage}
-            </h3>
-            <button
-                type="button"
-                onClick={handleChangeLanguage}
-            >
-                Change Language
-            </button>
-
-
+        <>
             <Registration/>
-        </div>
+        </>
     );
 }
 

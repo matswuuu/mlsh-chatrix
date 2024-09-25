@@ -1,6 +1,11 @@
 {
-  "test": "тестовое сообщение",
+  "languages": {
+    "english": "English",
+    "russian": "Russian"
+  },
   "registration": {
+    "form": "Registration",
+    "button-confirm": "Register",
     "input": {
       "email": {
         "placeholder": "E-Mail",

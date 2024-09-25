@@ -23,9 +23,10 @@ public class User {
     final UUID id;
     final List<Long> chatList;
 
+    String firstName, middleName, lastName;
+    String password;
     String email;
     String imageUrl;
-    String firstName, middleName, lastName;
 
     public User() {
         this.id = UUID.randomUUID();

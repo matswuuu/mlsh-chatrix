@@ -1,5 +1,8 @@
 {
-  "test": "тестовое сообщение",
+  "languages": {
+    "english": "Английский",
+    "russian": "Русский"
+  },
   "registration": {
     "input": {
       "email": {
