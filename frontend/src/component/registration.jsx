@@ -114,27 +114,13 @@ const Registration = () => {
                 <h2>{t('registration.form')}</h2>
                 <form className="box-auth-form" onSubmit={handleRegister}>
                     <InputBox
-                        id="first-name"
+                        id="name"
                         type="text"
-                        placeholder="registration.input.first-name.placeholder"
+                        placeholder="registration.input.name.placeholder"
                         value={firstName}
                         onChange={(event) => setFirstName(event.target.value)}
                     />
-                    <InputBox
-                        id="last-name"
-                        type="text"
-                        placeholder="registration.input.last-name.placeholder"
-                        value={lastName}
-                        onChange={(event) => setLastName(event.target.value)}
-                    />
-                    <InputBox
-                        id="middle-name"
-                        type="text"
-                        placeholder="registration.input.middle-name.placeholder"
-                        value={middleName}
-                        onChange={(event) => setMiddleName(event.target.value)}
-                    />
-                    <InputBox
+                     <InputBox
                         id="password"
                         type="text"
                         placeholder="registration.input.password.placeholder"

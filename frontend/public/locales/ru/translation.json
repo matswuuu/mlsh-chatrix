@@ -6,17 +6,11 @@
   "registration": {
     "input": {
       "email": {
-        "placeholder": "E-Mail",
-        "error": "Некорректный E-Mail"
+        "placeholder": "Электронная почта",
+        "error": "Некорректная почта"
       },
-      "first-name": {
-        "placeholder": "Имя"
-      },
-      "middle-name": {
-        "placeholder": "Отчество"
-      },
-      "last-name": {
-        "placeholder": "Фамилия"
+      "name": {
+        "placeholder": "Фамилия, имя и отчество*"
       },
       "password": {
         "placeholder": "Пароль",
