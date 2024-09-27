@@ -1,8 +1,8 @@
 import {useState} from 'react';
 import {gql, useMutation} from '@apollo/client';
 import {useTranslation} from "react-i18next";
-import PropTypes, {element} from 'prop-types';
-import "./registration.css"
+import AuthorizationInput from "../../../component/authorization/authorization-input.jsx";
+import "../authorization.css"
 
 const CREATE_USER = gql`
     mutation CreateUser(
@@ -28,7 +28,7 @@ const CREATE_USER = gql`
     }
 `;
 
-const Registration = () => {
+const RegistrationPage = () => {
     const {t, i18n} = useTranslation();
     const [firstName, setFirstName] = useState('');
     const [middleName, setMiddleName] = useState('');
@@ -85,56 +85,33 @@ const Registration = () => {
         createUser({variables: {email, firstName, middleName, lastName}});
     };
 
-    const InputBox = ({id, type, placeholder, value, onChange}) => {
-        return (
-            <div className="box-input" id={`${id}-block`}>
-                <input
-                    id={id}
-                    type={type}
-                    placeholder={t(placeholder)}
-                    value={value}
-                    onChange={onChange}
-                />
-                <text id={`${id}-error`}></text>
-            </div>
-        )
-    }
-
-    InputBox.propTypes = {
-        id: PropTypes.string.isRequired,
-        type: PropTypes.string.isRequired,
-        placeholder: PropTypes.string.isRequired,
-        value: PropTypes.string.isRequired,
-        onChange: PropTypes.func.isRequired,
-    };
-
     return (
         <div className="block-auth">
             <div className="box-auth">
                 <h2>{t('registration.form')}</h2>
                 <form className="box-auth-form" onSubmit={handleRegister}>
-                    <InputBox
+                    <AuthorizationInput
                         id="name"
                         type="text"
                         placeholder="registration.input.name.placeholder"
                         value={firstName}
                         onChange={(event) => setFirstName(event.target.value)}
                     />
-                     <InputBox
+                    <AuthorizationInput
                         id="password"
                         type="text"
                         placeholder="registration.input.password.placeholder"
                         value={password}
                         onChange={(event) => setPassword(event.target.value)}
                     />
-                    <InputBox
+                    <AuthorizationInput
                         id="repeat-password"
                         type="text"
                         placeholder="registration.input.repeat-password.placeholder"
                         value={repeatedPassword}
                         onChange={(event) => setRepeatedPassword(event.target.value)}
                     />
-                    <InputBox
+                    <AuthorizationInput
                         id="email"
                         type="email"
                         placeholder="registration.input.email.placeholder"
@@ -148,4 +125,4 @@ const Registration = () => {
     );
 };
 
-export default Registration;
+export default RegistrationPage;
