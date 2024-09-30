@@ -16,20 +16,9 @@ function App() {
 
     return (
         <Router>
-            {/*<Navbar />*/}
             <Routes>
                 <Route exact path="/registration" element={<RegistrationPage/>}/>
                 <Route exact path="/login" element={<LoginPage/>}/>
-                {/*<Route path="/about" element={<About />} />*/}
-                {/*<Route*/}
-                {/*    path="/contact"*/}
-                {/*    element={<Contact />}*/}
-                {/*/>*/}
-                {/*<Route path="/blogs" element={<Blogs />} />*/}
-                {/*<Route*/}
-                {/*    path="/sign-up"*/}
-                {/*    element={<SignUp />}*/}
-                {/*/>*/}
             </Routes>
         </Router>
     );

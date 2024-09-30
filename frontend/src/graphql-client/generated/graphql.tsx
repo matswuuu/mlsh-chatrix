@@ -17,25 +17,29 @@ export type Scalars = {
 
 export type Mutation = {
   __typename?: 'Mutation';
-  createUser?: Maybe<User>;
+  login?: Maybe<Scalars['String']['output']>;
 };
 
 
-export type MutationCreateUserArgs = {
-  email?: InputMaybe<Scalars['String']['input']>;
-  firstName: Scalars['String']['input'];
-  lastName: Scalars['String']['input'];
-  middleName?: InputMaybe<Scalars['String']['input']>;
+export type MutationLoginArgs = {
+  password: Scalars['String']['input'];
+  username: Scalars['String']['input'];
 };
 
 export type Query = {
   __typename?: 'Query';
+  existsByUsername?: Maybe<Scalars['Boolean']['output']>;
   userByChatId?: Maybe<User>;
   userByEmail?: Maybe<User>;
   userByFirstName?: Maybe<User>;
   userById?: Maybe<User>;
   userByLastName?: Maybe<User>;
   userByMiddleName?: Maybe<User>;
+};
+
+
+export type QueryExistsByUsernameArgs = {
+  username: Scalars['String']['input'];
 };
 
 
@@ -77,4 +81,5 @@ export type User = {
   imageUrl?: Maybe<Scalars['String']['output']>;
   lastName: Scalars['String']['output'];
   middleName?: Maybe<Scalars['String']['output']>;
+  password: Scalars['String']['output'];
 };

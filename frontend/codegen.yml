@@ -1,6 +1,5 @@
 overwrite: true
 schema: "http://localhost:8080/graphql"
-#documents: "C:/Users/matsw/IdeaProjects/mlsh-chatrix/backend/src/main/resources/graphql-client/schema.graphql"
 generates:
   src/graphql-client/generated/graphql.tsx:
     plugins:

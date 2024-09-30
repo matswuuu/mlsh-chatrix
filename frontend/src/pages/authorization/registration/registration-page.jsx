@@ -43,7 +43,7 @@ const RegistrationPage = () => {
 
     const inputNone = (inputId) => {
         const block = document.getElementById(`${inputId}-block`);
-        block.classList.remove("input-error", "input-accept", "box-input-active");
+        block.classList.remove("input-error", "input-accept", "authorization-input-active");
     }
 
     const inputError = (inputId, error) => {
@@ -53,12 +53,12 @@ const RegistrationPage = () => {
 
         if (error !== undefined) {
             // document.getElementById(`${inputId}-error`).text(t(error));
-            block.classList.remove("box-input-active");
-            block.classList.add("box-input-active");
+            block.classList.remove("authorization-input-active");
+            block.classList.add("authorization-input-active");
         }
     }
 
-    const [createUser, {loading}] = useMutation(CREATE_USER, {
+    const createUser = useMutation(CREATE_USER, {
         onCompleted: (data) => {
             console.log('User created successfully:', data);
         },

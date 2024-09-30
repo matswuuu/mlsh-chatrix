@@ -5,16 +5,19 @@ type Query {
     userByMiddleName(middleName: String!): User
     userByLastName(lastName: String!): User
     userByChatId(chatId: Int!): User
+
+    existsByUsername(username: String!): Boolean
 }
 
 type Mutation {
     createUser(
-        firstName: String!
-        lastName: String!
-        middleName: String = ""
-        password: String!
+        firstName: String!,
+        middleName: String = "",
+        lastName: String!,
+        password: String!,
         email: String = ""
     ): User
+    login(username: String!, password: String!): String
 }
 
 type User {

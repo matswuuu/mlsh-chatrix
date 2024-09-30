@@ -5,16 +5,34 @@ import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.graphql.data.method.annotation.Argument;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.UUID;
+import java.util.regex.Pattern;
 
 @Service
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
 public class UserService {
 
+    private static final Pattern VALID_EMAIL_ADDRESS_REGEX =
+            Pattern.compile("^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@"
+                    + "[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$");
+
     UserRepository userRepository;
+
+    public boolean validateEmail(String email) {
+        return VALID_EMAIL_ADDRESS_REGEX.matcher(email).matches();
+    }
+
+    public boolean existsByUsername(String username) {
+        return userRepository.existsByUsername(username);
+    }
 
     public boolean existsByEmail(String email) {
         return userRepository.existsByEmail(email);
@@ -24,8 +42,13 @@ public class UserService {
         return userRepository.findById(id).orElse(null);
     }
 
+    public User findByUsername(String username) {
+        return userRepository.findByUsername(username).orElse(null);
+    }
+
     public User findByEmail(String email) {
-        return userRepository.findByEmail(email).orElse(null);
+        return validateEmail(email) ?
+                userRepository.findByEmail(email).orElse(null) : null;
     }
 
     public User findByFirstName(String firstName) {
@@ -46,6 +69,10 @@ public class UserService {
 
     public void save(User user) {
         userRepository.save(user);
+    }
+
+    public UserDetailsService userDetailsService() {
+        return this::findByUsername;
     }
 
 }

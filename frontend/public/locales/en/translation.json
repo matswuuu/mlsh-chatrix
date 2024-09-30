@@ -1,8 +1,33 @@
 {
   "languages": {
-    "english": "English",
-    "russian": "Russian"
+    "english": "Английский",
+    "russian": "Русский"
   },
+  "authorization": {
+    "input": {
+      "username": {
+        "placeholder": "Имя пользователя",
+        "error": {
+          "invalid-username": "Неверное имя пользователя",
+          "username-not-found": "Пользователь с таким именем не найден"
+        }
+      },
+      "password": {
+        "placeholder": "Пароль",
+        "error": {
+          "invalid-password": "Минимум 8 знаков. Одна заглавная, строчная буква и одна цифра"
+        }
+      }
+    },
+    "registration": {
+
+    },
+    "login": {
+      "form": "Вход",
+      "submit-button": "Войти"
+    }
+  },
+
   "registration": {
     "input": {
       "email": {
