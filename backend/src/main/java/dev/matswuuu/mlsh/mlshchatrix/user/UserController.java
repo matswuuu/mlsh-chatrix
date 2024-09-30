@@ -56,7 +56,7 @@ public class UserController {
 
     @QueryMapping
     public boolean existsByUsername(@Argument String username) {
-        return userService.existsByUsername(username);
+        return userService.existsByUsername(username.toLowerCase());
     }
 
     @MutationMapping
@@ -68,10 +68,10 @@ public class UserController {
         if (!email.isEmpty() && userService.existsByEmail(email))
             throw new EmailAlreadySetException("Email already exists");
 
-        var username =
+//        var username =
 
         var user = new User()
-                .setUsername()
+//                .setUsername()
                 .setFirstName(firstName)
                 .setMiddleName(middleName)
                 .setLastName(lastName)
