@@ -19,6 +19,8 @@ import java.util.UUID;
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
 public class UserController {
 
+    private static final String USERNAME_PATTERN = "%s-%s-%s";
+
     UserService userService;
     PasswordEncoder passwordEncoder;
 
@@ -68,10 +70,14 @@ public class UserController {
         if (!email.isEmpty() && userService.existsByEmail(email))
             throw new EmailAlreadySetException("Email already exists");
 
-//        var username =
+        var username = USERNAME_PATTERN.formatted(
+                lastName.substring(0, 3),
+                firstName.substring(0, 3),
+                middleName.substring(0, 3)
+        );
 
         var user = new User()
-//                .setUsername()
+                .setUsername(username)
                 .setFirstName(firstName)
                 .setMiddleName(middleName)
                 .setLastName(lastName)

@@ -142,15 +142,13 @@ public class SecurityConfiguration {
 ////                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
 //                .build();
 
-        return http.formLogin(formLoginConfigurer -> {
-                    formLoginConfigurer
-                            .loginPage("/login")
-                            .permitAll();
-                })
-                .authorizeHttpRequests(request -> request
+        return http.authorizeHttpRequests(request -> request
                         .requestMatchers("/locales/**", "/assets/**").permitAll()
                         .requestMatchers("/graphql", "/graphiql").permitAll()
                         .anyRequest().authenticated()
+                )
+                .formLogin(formLoginConfigurer -> formLoginConfigurer
+                        .loginPage("/login").permitAll()
                 )
                 .csrf(csrf ->
                         csrf.ignoringRequestMatchers("/graphql")

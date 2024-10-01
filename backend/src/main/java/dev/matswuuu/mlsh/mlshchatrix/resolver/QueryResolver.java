@@ -13,6 +13,7 @@ public class QueryResolver implements WebGraphQlInterceptor {
     @Override
     public Mono<WebGraphQlResponse> intercept(WebGraphQlRequest request,
                                               @NotNull Chain chain) {
+        System.out.println(123);
         var exchange = (ServerWebExchange) request.getAttributes().get(ServerWebExchange.class.getName());
         if (exchange == null) return chain.next(request);
 
