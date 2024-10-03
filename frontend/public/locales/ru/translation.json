@@ -3,6 +3,9 @@
     "english": "Английский",
     "russian": "Русский"
   },
+  "cookie": {
+    "confirm-usage": "Используя сайт, Вы соглашаетесь на использование нами cookie-файлов."
+  },
   "authorization": {
     "input": {
       "username": {
