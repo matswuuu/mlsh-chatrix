@@ -1,0 +1,45 @@
+/*.cookie-panel {*/
+/*    width: 100%;*/
+/*    height: auto;*/
+/*    position: fixed;*/
+/*    bottom: 12rem;*/
+/*    pointer-events: none;*/
+/*}*/
+
+/*.cookie-panel {*/
+/*    bottom: 12rem;*/
+/*}*/
+
+/*.cookie {*/
+/*    display: flex;*/
+/*    background: var(--graphite);*/
+/*    box-sizing: border-box;*/
+/*    border: solid 1px var(--light-gray);*/
+/*    z-index: 100;*/
+/*    width: max-content;*/
+/*    height: auto;*/
+/*    padding: 1.052rem;*/
+/*    align-items: center;*/
+/*    gap: 1.578rem;*/
+/*    margin: auto;*/
+/*    border-radius: 0.578rem;*/
+/*    pointer-events: visible;*/
+/*}*/
+
+/*.cookie {*/
+/*    padding: 1.0526rem;*/
+/*    width: 92%;*/
+/*    flex-direction: column;*/
+/*}*/
+
+/*.cookie button {*/
+/*    width: 100%;*/
+/*}*/
+
+/*.cookie text {*/
+/*    width: 24rem;*/
+/*}*/
+
+/*.cookie text {*/
+/*    width: auto;*/
+/*}*/

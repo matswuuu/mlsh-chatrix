@@ -1,10 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './app.jsx';
 import {ApolloProvider} from '@apollo/client';
-import client from './apollo-client.js';
-import './index.css';
-import './i18n.js';
+import client from '../src/apollo-client.js';
+import '../src/i18n.js';
+import App from "./components/App/index.jsx";
+import "./components/search/1.css"
+import "./components/search/2.css"
+import "./components/search/3.css"
+import "./components/search/4.css"
+import "./components/search/5.css"
+import "./components/search/6.css"
 
 ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>

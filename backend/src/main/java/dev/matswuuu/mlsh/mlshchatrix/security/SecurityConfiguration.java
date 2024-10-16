@@ -115,41 +115,24 @@ public class SecurityConfiguration {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-//        return http.csrf(AbstractHttpConfigurer::disable)
-//                .formLogin(formLoginConfigurer -> {
-//                    formLoginConfigurer
-//                            .loginPage("/login")
-//                            .permitAll();
-//                })
-//                .cors(cors -> cors.configurationSource(request -> {
-//                    var corsConfiguration = new CorsConfiguration();
-//                    corsConfiguration.setAllowedOriginPatterns(List.of("*"));
-//                    corsConfiguration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-//                    corsConfiguration.setAllowedHeaders(List.of("*"));
-//                    corsConfiguration.setAllowCredentials(true);
-//                    corsConfiguration.setExposedHeaders(List.of("Authorization"));
-//                    return corsConfiguration;
-//                }))
-//                .csrf((csrf) -> csrf
-//                        .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
-//                )
-//                .authorizeHttpRequests(request -> request
-//                        .requestMatchers("/locales/**", "/assets/**").permitAll()
-//                        .requestMatchers("/graphql", "/graphiql", "/vendor/graphiql/*").permitAll()
-//                        .anyRequest().authenticated()
-//                )
-//                .authenticationProvider(authenticationProvider)
-////                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
-//                .build();
-
-        return http.authorizeHttpRequests(request -> request
+        return http.csrf(AbstractHttpConfigurer::disable)
+                .formLogin(formLoginConfigurer -> formLoginConfigurer
+                        .loginPage("/login").permitAll()
+                )
+                .authorizeHttpRequests(request -> request
                         .requestMatchers("/locales/**", "/assets/**").permitAll()
                         .requestMatchers("/graphql", "/graphiql").permitAll()
                         .anyRequest().authenticated()
                 )
-                .formLogin(formLoginConfigurer -> formLoginConfigurer
-                        .loginPage("/login").permitAll()
-                )
+                .cors(cors -> cors.configurationSource(request -> {
+                    var corsConfiguration = new CorsConfiguration();
+                    corsConfiguration.setAllowedOriginPatterns(List.of("*"));
+                    corsConfiguration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+                    corsConfiguration.setAllowedHeaders(List.of("*"));
+                    corsConfiguration.setAllowCredentials(true);
+                    corsConfiguration.setExposedHeaders(List.of("Authorization"));
+                    return corsConfiguration;
+                }))
                 .csrf(csrf ->
                         csrf.ignoringRequestMatchers("/graphql")
                                 .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
@@ -160,10 +143,6 @@ public class SecurityConfiguration {
                 )
                 .sessionManagement(session ->
                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                )
-                .exceptionHandling(exceptions -> exceptions
-                        .authenticationEntryPoint(new BearerTokenAuthenticationEntryPoint())
-                        .accessDeniedHandler(new BearerTokenAccessDeniedHandler())
                 )
                 .build();
     }

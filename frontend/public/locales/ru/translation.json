@@ -7,7 +7,16 @@
     "confirm-usage": "Используя сайт, Вы соглашаетесь на использование нами cookie-файлов."
   },
   "authorization": {
+    "unnecessary-parameter": "* - необязательный параметр",
+    "politics-accept": "Я подтверждаю свое согласие с <link>LINK</link>, http://localhost:5174/registration.",
     "input": {
+      "full-name": {
+        "placeholder": "Фамилия, имя и отчество*",
+        "error": {
+          "invalid-username": "Неверное имя пользователя",
+          "username-not-found": "Пользователь с таким именем не найден"
+        }
+      },
       "username": {
         "placeholder": "Имя пользователя",
         "error": {
@@ -20,14 +29,33 @@
         "error": {
           "invalid-password": "Минимум 8 знаков. Одна заглавная, строчная буква и одна цифра"
         }
+      },
+      "password-repeat": {
+        "placeholder": "Повтор пароля",
+        "error": {
+          "invalid-password": "Минимум 8 знаков. Одна заглавная, строчная буква и одна цифра"
+        }
       }
     },
     "registration": {
-
+      "form": "Регистрация",
+      "submit-button": "Зарегистрироваться"
     },
     "login": {
       "form": "Вход",
       "submit-button": "Войти"
+    }
+  },
+  "chat": {
+    "message-input": "Сообщение",
+    "search-chat": "Поиск",
+    "header": {
+      "members-amount": "{{members}} участников"
+    },
+    "attachment": {
+      "add": "Добавить вложение",
+      "photo-or-video": "Фото или видео",
+      "file": "Файл"
     }
   },
 
