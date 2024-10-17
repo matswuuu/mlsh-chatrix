@@ -1,6 +1,6 @@
-import React from "react";
 import MessageInput from "./message-input.jsx";
-import AttachmentMenu from "./attachment-menu.jsx";
+import AttachmentMenu from "./attachmentmenu/attachment-menu.jsx";
+import "./input.css"
 
 const MessageInputWrapper = () => {
     return (

@@ -49,6 +49,9 @@
   "chat": {
     "message-input": "Сообщение",
     "search-chat": "Поиск",
+    "input": {
+      "choose-emoji": "Эмодзи"
+    },
     "header": {
       "members-amount": "{{members}} участников"
     },
