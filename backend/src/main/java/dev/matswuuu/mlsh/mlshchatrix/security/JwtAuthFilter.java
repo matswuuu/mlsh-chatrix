@@ -18,7 +18,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
 
-//@Component
+@Component
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @RequiredArgsConstructor
 public class JwtAuthFilter extends OncePerRequestFilter {
@@ -36,16 +36,14 @@ public class JwtAuthFilter extends OncePerRequestFilter {
             throws ServletException, IOException {
         var authHeader = request.getHeader(HEADER_NAME);
 
-        var a = request.getHeaderNames();
-        while (a.hasMoreElements()) {
-            System.out.println(a.nextElement());
-        }
-
         if (StringUtils.isEmpty(authHeader) ||
                 !StringUtils.startsWith(authHeader, BEARER_PREFIX)) {
+            System.out.println("unathorized");
             filterChain.doFilter(request, response);
             return;
         }
+
+        System.out.println(123);
 
         var jwt = authHeader.substring(BEARER_PREFIX.length());
         System.out.println(jwt);

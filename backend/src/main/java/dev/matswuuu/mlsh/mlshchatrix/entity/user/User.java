@@ -1,4 +1,4 @@
-package dev.matswuuu.mlsh.mlshchatrix.user;
+package dev.matswuuu.mlsh.mlshchatrix.entity.user;
 
 import lombok.*;
 import lombok.experimental.Accessors;

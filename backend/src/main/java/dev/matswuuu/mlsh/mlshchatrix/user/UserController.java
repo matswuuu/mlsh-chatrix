@@ -1,11 +1,12 @@
 package dev.matswuuu.mlsh.mlshchatrix.user;
 
+import dev.matswuuu.mlsh.mlshchatrix.entity.message.Message;
+import dev.matswuuu.mlsh.mlshchatrix.entity.user.User;
 import dev.matswuuu.mlsh.mlshchatrix.exception.user.email.EmailAlreadySetException;
 import dev.matswuuu.mlsh.mlshchatrix.security.TokenResolver;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
@@ -93,6 +94,12 @@ public class UserController {
     public String login(@Argument String username,
                         @Argument String password) {
         return tokenResolver.login(username, password);
+    }
+
+    @MutationMapping
+    public Message sendMessage(@Argument long chatId,
+                               @Argument String content) {
+        return null;
     }
 
 }

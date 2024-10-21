@@ -1,4 +1,4 @@
-import ChatSearch from "./chat-search.jsx";
+import ChatSearch from "./search/chat-search.jsx";
 import ChatList from "./chat-list.jsx";
 import React from "react";
 import PropTypes from "prop-types";

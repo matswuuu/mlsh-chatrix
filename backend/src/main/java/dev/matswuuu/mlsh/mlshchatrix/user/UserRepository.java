@@ -1,12 +1,9 @@
 package dev.matswuuu.mlsh.mlshchatrix.user;
 
-import dev.matswuuu.mlsh.mlshchatrix.user.User;
+import dev.matswuuu.mlsh.mlshchatrix.entity.user.User;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.data.mongodb.repository.MongoRepository;
-import org.springframework.data.mongodb.repository.Query;
-import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
 import org.springframework.stereotype.Repository;
-import reactor.core.publisher.Mono;
 
 import java.util.Optional;
 import java.util.UUID;

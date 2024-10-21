@@ -5,6 +5,7 @@
     height: auto;
     box-sizing: border-box;
     border-radius: 0.263rem;
+    position: relative;
 }
 
 .input input {

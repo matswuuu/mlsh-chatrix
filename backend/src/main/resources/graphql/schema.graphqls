@@ -17,7 +17,14 @@ type Mutation {
         password: String!,
         email: String = ""
     ): User
-    login(username: String!, password: String!): String
+    login(
+        username: String!,
+        password: String!
+    ): String
+    sendMessage(
+        chatId: Int!
+        content: String!
+    ): Message
 }
 
 type User {
@@ -29,4 +36,11 @@ type User {
     email: String
     imageUrl: String
     chatList: [Int]!
+}
+
+type Message {
+    content: String!
+    chatId: Int!
+    authorId: ID!
+    timestamp: Int!
 }

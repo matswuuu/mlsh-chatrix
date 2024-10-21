@@ -1,14 +1,14 @@
 import React from 'react';
-import LeftColumn from "../left/left-column.jsx";
-import MiddleHeader from "../middle/header/middle-header.jsx";
-import MessageElement from "../message/message-element.jsx";
-import MessageInputWrapper from "../middle/input/message-input-wrapper.jsx";
-import Chat from "../chat/chat.js";
-import ChatItem from "../left/chat-item.jsx";
-import Message from "../chat/message.js";
-import User from "../chat/user.js";
+import LeftColumn from "../../components/left/left-column.jsx";
+import MiddleHeader from "../../components/middle/header/middle-header.jsx";
+import MessageElement from "../../components/message/message-element.jsx";
+import MessageInputWrapper from "../../components/middle/input/message-input-wrapper.jsx";
+import Chat from "../../components/chat/chat.js";
+import ChatItem from "../../components/left/chat-item.jsx";
+import Message from "../../components/chat/message.js";
+import User from "../../components/chat/user.js";
 
-const App = () => {
+const ChatPage = () => {
 
     const arrayOfChats = [
         new Chat("Chat name 1", 2, "", [new Message(1, "Preview message", "author", 1)]),
@@ -121,4 +121,4 @@ const App = () => {
     );
 }
 
-export default App;
+export default ChatPage;

@@ -1,5 +1,6 @@
 package dev.matswuuu.mlsh.mlshchatrix;
 
+import dev.matswuuu.mlsh.mlshchatrix.entity.message.Message;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
