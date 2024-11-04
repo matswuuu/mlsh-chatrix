@@ -13,8 +13,3 @@ spring:
       database: "mlsh-chatrix"
       uri: "${MONGODB_URI}"
       uuid-representation: standard
-jwt:
-  private:
-    key: "classpath:app.key"
-  public:
-    key: "classpath:app.pub"

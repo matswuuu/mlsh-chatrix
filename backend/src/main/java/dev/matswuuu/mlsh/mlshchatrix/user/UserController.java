@@ -3,7 +3,7 @@ package dev.matswuuu.mlsh.mlshchatrix.user;
 import dev.matswuuu.mlsh.mlshchatrix.entity.message.Message;
 import dev.matswuuu.mlsh.mlshchatrix.entity.user.User;
 import dev.matswuuu.mlsh.mlshchatrix.exception.user.email.EmailAlreadySetException;
-import dev.matswuuu.mlsh.mlshchatrix.security.TokenResolver;
+import dev.matswuuu.mlsh.mlshchatrix.security.JwtService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -25,8 +25,7 @@ public class UserController {
 
     UserService userService;
     PasswordEncoder passwordEncoder;
-
-    TokenResolver tokenResolver;
+    JwtService jwtService;
 
     @QueryMapping
     public User userById(@Argument UUID id) {
@@ -64,11 +63,11 @@ public class UserController {
     }
 
     @MutationMapping
-    public User createUser(@Argument String firstName,
-                           @Argument String middleName,
-                           @Argument String lastName,
-                           @Argument String password,
-                           @Argument String email) {
+    public User register(@Argument String firstName,
+                         @Argument String middleName,
+                         @Argument String lastName,
+                         @Argument String password,
+                         @Argument String email) {
         if (!email.isEmpty() && userService.existsByEmail(email))
             throw new EmailAlreadySetException("Email already exists");
 
@@ -93,7 +92,12 @@ public class UserController {
     @MutationMapping
     public String login(@Argument String username,
                         @Argument String password) {
-        return tokenResolver.login(username, password);
+        var user = userService.findByUsername(username);
+
+        if (user == null || !passwordEncoder.matches(password, user.getPassword()))
+            throw new RuntimeException("Invalid credentials");
+
+        return jwtService.generateToken(username);
     }
 
     @MutationMapping

@@ -1,11 +1,11 @@
 .input {
+    position: relative;
     transition: 0.2s;
     background: var(--light-gray);
     max-width: 100%;
     height: auto;
     box-sizing: border-box;
     border-radius: 0.263rem;
-    position: relative;
 }
 
 .input input {
@@ -34,7 +34,7 @@
 .input text {
     text-align: left;
     transition: 0.2s;
-    display: none;
+    display: block;
     font-size: 0.736rem;
     padding: 0.368rem 0.684rem;
 }

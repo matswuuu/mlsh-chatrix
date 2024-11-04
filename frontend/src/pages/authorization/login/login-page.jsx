@@ -6,9 +6,7 @@ import AuthorizationInput, {
 import {useTranslation} from "react-i18next";
 import {useEffect, useRef, useState} from "react";
 import {gql, useMutation} from "@apollo/client";
-import "../index.css"
-import "../authorization.css"
-import "../input.css"
+import {useNavigate} from "react-router-dom";
 
 const LOGIN = gql`
     mutation Login($username: String!, $password: String!) {
@@ -17,17 +15,20 @@ const LOGIN = gql`
 `
 
 const LoginPage = () => {
+    const navigate = useNavigate();
     const usernameRef = useRef(null)
     const passwordRef = useRef(null)
     const buttonRef = useRef(null)
     const {t} = useTranslation();
+
     let [username, setUsername] = useState('');
     let [password, setPassword] = useState('');
+    const [logged, setLogged] = useState(false);
 
     const [login] = useMutation(LOGIN, {
         onCompleted: (data) => {
-            // console.log(data)
-            // console.log('User created successfully:', data);
+            localStorage.setItem("token", data["login"]);
+            setLogged(true);
         },
         onError: (error) => {
             console.error("error", error);
@@ -38,6 +39,8 @@ const LoginPage = () => {
         usernameRef.current = document.getElementById('username-block');
         passwordRef.current = document.getElementById('password-block');
         buttonRef.current = document.getElementById('login-button');
+
+        if (logged) navigate("/chat");
     });
 
     const checkWholeValidity = () => {
@@ -47,15 +50,10 @@ const LoginPage = () => {
         );
     }
 
-    const handleLogin = (e) => {
+    const handleLogin = async (e) => {
         e.preventDefault();
         buttonRef.current.disabled = true;
-
-        login({ variables: { username: username, password: password }})
-            .then(result => {
-                const token = result.data["login"];
-                localStorage.
-            })
+        await login({variables: {username: username, password: password}});
     }
 
     return (

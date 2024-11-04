@@ -1,31 +1,31 @@
-.AttachMenu {
-    align-self: flex-end
-}
+/*.AttachMenu {*/
+/*    align-self: flex-end*/
+/*}*/
 
-.AttachMenu--button:focus {
-    color: var(--color-primary)
-}
+/*.AttachMenu--button:focus {*/
+/*    color: var(--color-primary)*/
+/*}*/
 
-.AttachMenu--menu {
-    position: relative;
-    top: -3.5rem
-}
+/*.AttachMenu--menu {*/
+/*    position: relative;*/
+/*    top: -3.5rem*/
+/*}*/
 
-@media (max-width: 600px) {
-    .AttachMenu--menu {
-        top: -2.875rem
-    }
-}
+/*@media (max-width: 600px) {*/
+/*    .AttachMenu--menu {*/
+/*        top: -2.875rem*/
+/*    }*/
+/*}*/
 
-.AttachMenu--menu .bubble {
-    max-height: 20rem;
-    overflow: auto
-}
+/*.AttachMenu--menu .bubble {*/
+/*    max-height: 20rem;*/
+/*    overflow: auto*/
+/*}*/
 
-.is-pointer-env .AttachMenu--menu > .backdrop {
-    position: absolute;
-    top: -1rem;
-    left: auto;
-    right: 0;
-    width: 3.5rem
-}
+/*.is-pointer-env .AttachMenu--menu > .backdrop {*/
+/*    position: absolute;*/
+/*    top: -1rem;*/
+/*    left: auto;*/
+/*    right: 0;*/
+/*    width: 3.5rem*/
+/*}*/

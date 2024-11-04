@@ -1,15 +1,23 @@
-import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
-import RegistrationPage from "./pages/authorization/registration/registration-page.jsx";
-import LoginPage from "./pages/authorization/login/login-page.jsx";
+import {BrowserRouter as Router, Navigate, Route, Routes} from "react-router-dom";
 import ChatPage from "./pages/chat/chat-page.jsx";
 
 const App = () => {
     return (
         <Router>
             <Routes>
-                <Route exact path="/registration" element={<RegistrationPage/>}/>
-                <Route exact path="/login" element={<LoginPage/>}/>
-                <Route exact path="/chat" element={<ChatPage/>}/>
+                <Route
+                    exact path="/registration"
+                    element={localStorage.getItem("token") ? <ChatPage/> : <Navigate to="/registration"/>}
+                />
+                <Route
+                    exact path="/login"
+                    element={localStorage.getItem("token") ? <ChatPage/> : <Navigate to="/login"/>}
+                />
+                <Route
+                    exact path="/chat"
+                    element={localStorage.getItem("token") ? <ChatPage/> : <Navigate to="/login"/>}
+                />
+                <Route exact path="/*" element={<Navigate to='/login' replace />}/>
             </Routes>
             {/*<CookiePanel/>*/}
         </Router>

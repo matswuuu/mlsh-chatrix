@@ -10,7 +10,7 @@ type Query {
 }
 
 type Mutation {
-    createUser(
+    register(
         firstName: String!,
         middleName: String = "",
         lastName: String!,
@@ -21,6 +21,7 @@ type Mutation {
         username: String!,
         password: String!
     ): String
+
     sendMessage(
         chatId: Int!
         content: String!

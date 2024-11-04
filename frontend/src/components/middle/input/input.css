@@ -1,244 +1,244 @@
-.composer-wrapper {
-    flex-grow: 1;
-    max-width: calc(100% - 5rem);
-    background: var(--color-background);
-    position: relative;
-    z-index: 1;
-    box-shadow: 0 1px 2px var(--color-default-shadow);
-    border: solid 1px var(--light-gray);
-    border-radius: 0.263rem;
-}
+/*.composer-wrapper {*/
+/*    flex-grow: 1;*/
+/*    max-width: calc(100% - 5rem);*/
+/*    background: var(--color-background);*/
+/*    position: relative;*/
+/*    z-index: 1;*/
+/*    box-shadow: 0 1px 2px var(--color-default-shadow);*/
+/*    border: solid 1px var(--light-gray);*/
+/*    border-radius: 0.263rem;*/
+/*}*/
 
-.composer-wrapper.with-story-tweaks {
-    border-radius: var(--border-radius-default-small);
-    border-bottom-right-radius: 0;
-    box-shadow: none
-}
+/*.composer-wrapper.with-story-tweaks {*/
+/*    border-radius: var(--border-radius-default-small);*/
+/*    border-bottom-right-radius: 0;*/
+/*    box-shadow: none*/
+/*}*/
 
-.composer-wrapper.with-story-tweaks.is-need-premium {
-    border-bottom-right-radius: var(--border-radius-default-small)
-}
+/*.composer-wrapper.with-story-tweaks.is-need-premium {*/
+/*    border-bottom-right-radius: var(--border-radius-default-small)*/
+/*}*/
 
-.composer-wrapper .svg-appendix {
-    position: absolute;
-    bottom: -0.1875rem;
-    right: -0.5rem;
-    width: .5625rem;
-    height: 1.25rem;
-    transition: opacity 200ms;
-    font-size: 1rem !important
-}
+/*.composer-wrapper .svg-appendix {*/
+/*    position: absolute;*/
+/*    bottom: -0.1875rem;*/
+/*    right: -0.5rem;*/
+/*    width: .5625rem;*/
+/*    height: 1.25rem;*/
+/*    transition: opacity 200ms;*/
+/*    font-size: 1rem !important*/
+/*}*/
 
-.composer-wrapper .svg-appendix .corner {
-    fill: var(--color-background)
-}
+/*.composer-wrapper .svg-appendix .corner {*/
+/*    fill: var(--color-background)*/
+/*}*/
 
-@media (max-width: 600px) {
-    .composer-wrapper {
-        max-width: calc(100% - 3.375rem)
-    }
-}
+/*@media (max-width: 600px) {*/
+/*    .composer-wrapper {*/
+/*        max-width: calc(100% - 3.375rem)*/
+/*    }*/
+/*}*/
 
-.message-input-wrapper {
-    display: flex
-}
+/*.message-input-wrapper {*/
+/*    display: flex*/
+/*}*/
 
-.message-input-wrapper .input-scroller {
-    margin-right: .5rem;
-    padding-right: .25rem
-}
+/*.message-input-wrapper .input-scroller {*/
+/*    margin-right: .5rem;*/
+/*    padding-right: .25rem*/
+/*}*/
 
-.message-input-wrapper > .Spinner {
-    align-self: center;
-    --spinner-size: 1.5rem;
-    margin-right: -0.5rem
-}
+/*.message-input-wrapper > .Spinner {*/
+/*    align-self: center;*/
+/*    --spinner-size: 1.5rem;*/
+/*    margin-right: -0.5rem*/
+/*}*/
 
-.message-input-wrapper > .AttachMenu > .Button, .message-input-wrapper > .Button {
-    flex-shrink: 0;
-    background: none !important;
-    width: var(--base-height, 3.5rem);
-    height: var(--base-height, 3.5rem);
-    margin: 0;
-    padding: 0;
-    align-self: flex-end
-}
+/*.message-input-wrapper > .AttachMenu > .Button, .message-input-wrapper > .Button {*/
+/*    flex-shrink: 0;*/
+/*    background: none !important;*/
+/*    width: var(--base-height, 3.5rem);*/
+/*    height: var(--base-height, 3.5rem);*/
+/*    margin: 0;*/
+/*    padding: 0;*/
+/*    align-self: flex-end*/
+/*}*/
 
-.message-input-wrapper > .AttachMenu > .Button:not(.faded):not(.activated), .message-input-wrapper > .Button:not(.faded):not(.activated) {
-    color: var(--color-composer-button)
-}
+/*.message-input-wrapper > .AttachMenu > .Button:not(.faded):not(.activated), .message-input-wrapper > .Button:not(.faded):not(.activated) {*/
+/*    color: var(--color-composer-button)*/
+/*}*/
 
-.message-input-wrapper > .AttachMenu > .Button + .Button, .message-input-wrapper > .AttachMenu > .Button + .AttachMenu, .message-input-wrapper > .Button + .Button, .message-input-wrapper > .Button + .AttachMenu {
-    margin-left: -1rem
-}
+/*.message-input-wrapper > .AttachMenu > .Button + .Button, .message-input-wrapper > .AttachMenu > .Button + .AttachMenu, .message-input-wrapper > .Button + .Button, .message-input-wrapper > .Button + .AttachMenu {*/
+/*    margin-left: -1rem*/
+/*}*/
 
-@media (max-width: 600px) {
-    .message-input-wrapper > .AttachMenu > .Button, .message-input-wrapper > .Button {
-        width: 2.875rem;
-        height: 2.875rem
-    }
+/*@media (max-width: 600px) {*/
+/*    .message-input-wrapper > .AttachMenu > .Button, .message-input-wrapper > .Button {*/
+/*        width: 2.875rem;*/
+/*        height: 2.875rem*/
+/*    }*/
 
-    .message-input-wrapper > .AttachMenu > .Button + .Button, .message-input-wrapper > .AttachMenu > .Button + .AttachMenu, .message-input-wrapper > .Button + .Button, .message-input-wrapper > .Button + .AttachMenu {
-        margin-left: -0.6875rem
-    }
-}
+/*    .message-input-wrapper > .AttachMenu > .Button + .Button, .message-input-wrapper > .AttachMenu > .Button + .AttachMenu, .message-input-wrapper > .Button + .Button, .message-input-wrapper > .Button + .AttachMenu {*/
+/*        margin-left: -0.6875rem*/
+/*    }*/
+/*}*/
 
-.message-input-wrapper > .AttachMenu > .Button.bot-menu, .message-input-wrapper > .Button.bot-menu {
-    --icon-width: 1.25rem;
-    --icon-gap: 0.25rem;
-    --padding-sides: 0.5rem;
-    background: var(--color-primary) !important;
-    height: 2rem;
-    margin: 0 .5rem .75rem;
-    color: #fff !important;
-    text-transform: none;
-    display: inline-flex;
-    padding: 0 var(--padding-sides);
-    width: 2rem;
-    max-width: clamp(0px, 12rem, 25vw);
-    transition: .25s ease-out width, .25s ease-out border-radius;
-    border-radius: .5rem;
-    justify-content: flex-start
-}
+/*.message-input-wrapper > .AttachMenu > .Button.bot-menu, .message-input-wrapper > .Button.bot-menu {*/
+/*    --icon-width: 1.25rem;*/
+/*    --icon-gap: 0.25rem;*/
+/*    --padding-sides: 0.5rem;*/
+/*    background: var(--color-primary) !important;*/
+/*    height: 2rem;*/
+/*    margin: 0 .5rem .75rem;*/
+/*    color: #fff !important;*/
+/*    text-transform: none;*/
+/*    display: inline-flex;*/
+/*    padding: 0 var(--padding-sides);*/
+/*    width: 2rem;*/
+/*    max-width: clamp(0px, 12rem, 25vw);*/
+/*    transition: .25s ease-out width, .25s ease-out border-radius;*/
+/*    border-radius: .5rem;*/
+/*    justify-content: flex-start*/
+/*}*/
 
-.message-input-wrapper > .AttachMenu > .Button.bot-menu.open, .message-input-wrapper > .Button.bot-menu.open {
-    width: calc(var(--bot-menu-text-width) + var(--padding-sides) * 2 + var(--icon-gap) + var(--icon-width));
-    border-radius: 1rem
-}
+/*.message-input-wrapper > .AttachMenu > .Button.bot-menu.open, .message-input-wrapper > .Button.bot-menu.open {*/
+/*    width: calc(var(--bot-menu-text-width) + var(--padding-sides) * 2 + var(--icon-gap) + var(--icon-width));*/
+/*    border-radius: 1rem*/
+/*}*/
 
-@media (max-width: 600px) {
-    .message-input-wrapper > .AttachMenu > .Button.bot-menu, .message-input-wrapper > .Button.bot-menu {
-        margin-bottom: .4375rem
-    }
-}
+/*@media (max-width: 600px) {*/
+/*    .message-input-wrapper > .AttachMenu > .Button.bot-menu, .message-input-wrapper > .Button.bot-menu {*/
+/*        margin-bottom: .4375rem*/
+/*    }*/
+/*}*/
 
-.message-input-wrapper > .AttachMenu > .Button .bot-menu-icon, .message-input-wrapper > .Button .bot-menu-icon {
-    font-size: 1.25rem;
-    margin-right: var(--icon-gap);
-    transition: .25s ease-out transform;
-    transform: translateX(-0.15rem)
-}
+/*.message-input-wrapper > .AttachMenu > .Button .bot-menu-icon, .message-input-wrapper > .Button .bot-menu-icon {*/
+/*    font-size: 1.25rem;*/
+/*    margin-right: var(--icon-gap);*/
+/*    transition: .25s ease-out transform;*/
+/*    transform: translateX(-0.15rem)*/
+/*}*/
 
-.message-input-wrapper > .AttachMenu > .Button .bot-menu-icon.open, .message-input-wrapper > .Button .bot-menu-icon.open {
-    transform: translateX(0)
-}
+/*.message-input-wrapper > .AttachMenu > .Button .bot-menu-icon.open, .message-input-wrapper > .Button .bot-menu-icon.open {*/
+/*    transform: translateX(0)*/
+/*}*/
 
-.message-input-wrapper > .AttachMenu > .Button .bot-menu-text, .message-input-wrapper > .Button .bot-menu-text {
-    --emoji-size: 1rem;
-    font-size: .875rem;
-    font-weight: 500;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden
-}
+/*.message-input-wrapper > .AttachMenu > .Button .bot-menu-text, .message-input-wrapper > .Button .bot-menu-text {*/
+/*    --emoji-size: 1rem;*/
+/*    font-size: .875rem;*/
+/*    font-weight: 500;*/
+/*    white-space: nowrap;*/
+/*    text-overflow: ellipsis;*/
+/*    overflow: hidden*/
+/*}*/
 
-.message-input-wrapper > .AttachMenu > .Button.bot-commands, .message-input-wrapper > .Button.bot-commands {
-    color: var(--color-primary) !important
-}
+/*.message-input-wrapper > .AttachMenu > .Button.bot-commands, .message-input-wrapper > .Button.bot-commands {*/
+/*    color: var(--color-primary) !important*/
+/*}*/
 
-body.is-touch-env .message-input-wrapper > .AttachMenu > .Button.bot-commands.activated + .Button.mobile-symbol-menu-button, body.is-touch-env .message-input-wrapper > .Button.bot-commands.activated + .Button.mobile-symbol-menu-button {
-    z-index: calc(var(--z-menu-backdrop) + 1)
-}
+/*body.is-touch-env .message-input-wrapper > .AttachMenu > .Button.bot-commands.activated + .Button.mobile-symbol-menu-button, body.is-touch-env .message-input-wrapper > .Button.bot-commands.activated + .Button.mobile-symbol-menu-button {*/
+/*    z-index: calc(var(--z-menu-backdrop) + 1)*/
+/*}*/
 
-.message-input-wrapper > .AttachMenu > .Button.scheduled-button .icon::after, .message-input-wrapper > .Button.scheduled-button .icon::after {
-    content: "";
-    position: absolute;
-    top: .75rem;
-    right: .875rem;
-    border: .1875rem solid var(--color-background);
-    box-sizing: content-box;
-    width: .5rem;
-    height: .5rem;
-    border-radius: 50%;
-    background: var(--color-green-darker);
-    box-shadow: -0.375rem -0.25rem 0 -0.1875rem var(--color-background)
-}
+/*.message-input-wrapper > .AttachMenu > .Button.scheduled-button .icon::after, .message-input-wrapper > .Button.scheduled-button .icon::after {*/
+/*    content: "";*/
+/*    position: absolute;*/
+/*    top: .75rem;*/
+/*    right: .875rem;*/
+/*    border: .1875rem solid var(--color-background);*/
+/*    box-sizing: content-box;*/
+/*    width: .5rem;*/
+/*    height: .5rem;*/
+/*    border-radius: 50%;*/
+/*    background: var(--color-green-darker);*/
+/*    box-shadow: -0.375rem -0.25rem 0 -0.1875rem var(--color-background)*/
+/*}*/
 
-@media (max-width: 600px) {
-    .message-input-wrapper > .AttachMenu > .Button.scheduled-button .icon::after, .message-input-wrapper > .Button.scheduled-button .icon::after {
-        top: .5rem;
-        right: .5rem
-    }
-}
+/*@media (max-width: 600px) {*/
+/*    .message-input-wrapper > .AttachMenu > .Button.scheduled-button .icon::after, .message-input-wrapper > .Button.scheduled-button .icon::after {*/
+/*        top: .5rem;*/
+/*        right: .5rem*/
+/*    }*/
+/*}*/
 
-.message-input-wrapper > .input-group {
-    flex-grow: 1;
-    margin-bottom: 0
-}
+/*.message-input-wrapper > .input-group {*/
+/*    flex-grow: 1;*/
+/*    margin-bottom: 0*/
+/*}*/
 
-.message-input-wrapper .recording-state {
-    display: inline-block;
-    position: relative;
-    line-height: var(--base-height);
-    height: var(--base-height);
-    padding: 0 3.125rem 0 1rem;
-    font-family: var(--font-family);
-    font-variant-numeric: tabular-nums
-}
+/*.message-input-wrapper .recording-state {*/
+/*    display: inline-block;*/
+/*    position: relative;*/
+/*    line-height: var(--base-height);*/
+/*    height: var(--base-height);*/
+/*    padding: 0 3.125rem 0 1rem;*/
+/*    font-family: var(--font-family);*/
+/*    font-variant-numeric: tabular-nums*/
+/*}*/
 
-.message-input-wrapper .recording-state::after {
-    content: "";
-    width: .75rem;
-    height: .75rem;
-    background: var(--color-error);
-    border-radius: .375rem;
-    position: absolute;
-    top: 50%;
-    margin-top: -0.375rem;
-    right: 1.3125rem;
-    animation: recording-blink-like-macos 1.5s infinite
-}
+/*.message-input-wrapper .recording-state::after {*/
+/*    content: "";*/
+/*    width: .75rem;*/
+/*    height: .75rem;*/
+/*    background: var(--color-error);*/
+/*    border-radius: .375rem;*/
+/*    position: absolute;*/
+/*    top: 50%;*/
+/*    margin-top: -0.375rem;*/
+/*    right: 1.3125rem;*/
+/*    animation: recording-blink-like-macos 1.5s infinite*/
+/*}*/
 
-@media (max-width: 600px) {
-    .message-input-wrapper .recording-state {
-        height: 2.875rem;
-        line-height: 2.875rem
-    }
-}
+/*@media (max-width: 600px) {*/
+/*    .message-input-wrapper .recording-state {*/
+/*        height: 2.875rem;*/
+/*        line-height: 2.875rem*/
+/*    }*/
+/*}*/
 
-.input-scroller {
-    min-height: var(--base-height, 3.5rem);
-    max-height: 26rem;
-    overflow: hidden;
-    transition: height 100ms ease
-}
+/*.input-scroller {*/
+/*    min-height: var(--base-height, 3.5rem);*/
+/*    max-height: 26rem;*/
+/*    overflow: hidden;*/
+/*    transition: height 100ms ease*/
+/*}*/
 
-.input-scroller.overflown {
-    overflow-y: auto
-}
+/*.input-scroller.overflown {*/
+/*    overflow-y: auto*/
+/*}*/
 
-@media (max-width: 600px) {
-    .input-scroller {
-        min-height: 2.875rem;
-        max-height: 16rem
-    }
-}
+/*@media (max-width: 600px) {*/
+/*    .input-scroller {*/
+/*        min-height: 2.875rem;*/
+/*        max-height: 16rem*/
+/*    }*/
+/*}*/
 
-.input-scroller > .input-scroller-content {
-    position: relative
-}
+/*.input-scroller > .input-scroller-content {*/
+/*    position: relative*/
+/*}*/
 
-body.no-message-composer-animations .input-scroller {
-    transition: none !important
-}
+/*body.no-message-composer-animations .input-scroller {*/
+/*    transition: none !important*/
+/*}*/
 
-.input-scroller .emoji {
-    width: 1.25rem;
-    height: 1.25rem;
-    margin: 0 1px -5px;
-    vertical-align: 0;
-    pointer-events: none
-}
+/*.input-scroller .emoji {*/
+/*    width: 1.25rem;*/
+/*    height: 1.25rem;*/
+/*    margin: 0 1px -5px;*/
+/*    vertical-align: 0;*/
+/*    pointer-events: none*/
+/*}*/
 
-.input-scroller .custom-emoji {
-    margin: 0;
-    vertical-align: text-top
-}
+/*.input-scroller .custom-emoji {*/
+/*    margin: 0;*/
+/*    vertical-align: text-top*/
+/*}*/
 
-.input-scroller .custom-emoji.colorable {
-    filter: var(--input-custom-emoji-filter)
-}
+/*.input-scroller .custom-emoji.colorable {*/
+/*    filter: var(--input-custom-emoji-filter)*/
+/*}*/
 
-.input-scroller.clone .custom-emoji {
-    vertical-align: bottom
-}
+/*.input-scroller.clone .custom-emoji {*/
+/*    vertical-align: bottom*/
+/*}*/

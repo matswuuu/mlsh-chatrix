@@ -7,18 +7,21 @@ import lombok.experimental.FieldDefaults;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
+import javax.crypto.SecretKey;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.function.Function;
 
 @Service
-@FieldDefaults(level = AccessLevel.PRIVATE)
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class JwtService {
+
+    SecretKey secretKey = Jwts.SIG.HS512.key().build();
 
     private Claims extractAllClaims(String token) {
         return Jwts.parser()
-                .verifyWith(Jwts.SIG.HS512.key().build())
+                .verifyWith(secretKey)
                 .build()
                 .parseSignedClaims(token)
                 .getPayload();
@@ -32,26 +35,15 @@ public class JwtService {
         return extractClaim(token, Claims::getSubject);
     }
 
-    public Date extractExpiration(String token) {
-        return extractClaim(token, Claims::getExpiration);
-    }
-
     public boolean isTokenValid(String token, UserDetails userDetails) {
         var username = extractUsername(token);
-        var isTokenExpired = extractExpiration(token).before(new Date());
-        return username.equals(userDetails.getUsername()) && !isTokenExpired;
+        return username.equals(userDetails.getUsername());
     }
 
     public String generateToken(String username) {
-        var now = new Date();
-        var expiration = Date.from(LocalDateTime.now().plusMinutes(30)
-                .atZone(ZoneId.systemDefault()).toInstant());
         return Jwts.builder()
                 .subject(username)
-                .issuedAt(now)
-                .notBefore(now)
-                .expiration(expiration)
-                .signWith(Jwts.SIG.HS512.key().build())
+                .signWith(secretKey)
                 .compact();
     }
 

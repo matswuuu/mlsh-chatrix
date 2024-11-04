@@ -4339,10 +4339,7 @@ html.theme-dark #message-input-text .spoiler, html.theme-dark #story-input-text 
     color: var(--color-text);
     width: auto;
     height: auto;
-    padding-top: .125rem;
-    padding-bottom: .125rem;
-    padding-right: .4375rem;
-    padding-left: .4375rem;
+    padding: .125rem .4375rem;
     margin-left: .4375rem;
     text-transform: lowercase
 }

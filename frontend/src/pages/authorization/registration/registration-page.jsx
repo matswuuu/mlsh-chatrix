@@ -86,6 +86,8 @@ const RegistrationPage = () => {
         createUser({variables: {email, firstName, middleName, lastName}});
     };
 
+    // ПРОБЛЕМА С ВВОДОМ ВОЗНИКАЕТ ИЗ-ЗА ТОГО, ЧТО value={password} НЕ ОБНОВЛЯЕТСЯ!
+
     return (<div className="block-auth">
             <div className="box-auth">
                 <h2>{t('authorization.registration.form')}</h2>
@@ -162,21 +164,21 @@ const RegistrationPage = () => {
                             // checkWholeValidity();
                         }}
                     />
-                    {/*<div className="block-checkbox">*/}
-                    {/*    <label className="box-checkbox">*/}
-                    {/*        <input id="agreed-input" name="reg" className="checkbox" type="checkbox"/>*/}
-                    {/*        <span>*/}
-                    {/*            <Trans*/}
-                    {/*                i18nKey="authorization.politics-accept"*/}
-                    {/*                components={{*/}
-                    {/*                    link: (*/}
-                    {/*                        <a href="/privacy-policy" className="link"/>*/}
-                    {/*                    )*/}
-                    {/*                }}*/}
-                    {/*            />*/}
-                    {/*        </span>*/}
-                    {/*    </label>*/}
-                    {/*</div>*/}
+                    <div className="block-checkbox">
+                        <label className="box-checkbox">
+                            <input id="agreed-input" name="reg" className="checkbox" type="checkbox"/>
+                            <span>
+                                <Trans
+                                    i18nKey="authorization.politics-accept"
+                                    components={{
+                                        link: (
+                                            <a href="/privacy-policy" className="link"/>
+                                        )
+                                    }}
+                                />
+                            </span>
+                        </label>
+                    </div>
                     <button className="auth-button" id="registration-button" type="submit"
                             disabled={true}>{t('authorization.registration.submit-button')}</button>
                     <text className="text">{t("authorization.unnecessary-parameter")}</text>

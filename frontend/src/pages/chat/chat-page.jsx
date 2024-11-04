@@ -7,8 +7,10 @@ import Chat from "../../components/chat/chat.js";
 import ChatItem from "../../components/left/chat-item.jsx";
 import Message from "../../components/chat/message.js";
 import User from "../../components/chat/user.js";
+import {useNavigate} from "react-router-dom";
 
 const ChatPage = () => {
+    const navigate = useNavigate();
 
     const arrayOfChats = [
         new Chat("Chat name 1", 2, "", [new Message(1, "Preview message", "author", 1)]),

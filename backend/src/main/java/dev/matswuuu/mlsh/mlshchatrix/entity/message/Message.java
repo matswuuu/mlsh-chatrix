@@ -15,6 +15,7 @@ public class Message {
     long chatId;
     UUID authorId;
     long timestamp;
+
     /**
      * ID прошлого сообщения. Если сообщение не было
      * изменено, то ID = -1

@@ -12,6 +12,7 @@ export const validatePassword = (password)=>
     /^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{8,}$/.test(password);
 
 export const setNone = (id) => {
+    document.getElementById(`${id}-error`).textContent = "";
     document.getElementById(`${id}-block`).classList
         .remove("input-error", "input-accept", "input-active")
 }
