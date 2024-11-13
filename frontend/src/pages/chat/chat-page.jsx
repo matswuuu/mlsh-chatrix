@@ -5,6 +5,7 @@ import ChatItem from "../../components/left/chat-item.jsx";
 import LeftColumn from "../../components/left/left-column.jsx";
 import {gql, useLazyQuery, useQuery, useSubscription} from "@apollo/client";
 import MiddleHeader from "../../components/middle/header/middle-header.jsx";
+import UserProfile from "../../components/center/user-profile/user-profile.jsx";
 
 
 const GET_CHATS_BY_USER_ID = gql`
@@ -101,6 +102,7 @@ const ChatPage = () => {
 
 
                 {/*<NewChat/>*/}
+                <UserProfile/>
 
                 <div id="MiddleColumn" className="mask-image-disabled">
                     <div className="C6IaXYew nXhZtCma"></div>
