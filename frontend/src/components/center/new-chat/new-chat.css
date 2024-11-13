@@ -1,0 +1,79 @@
+.theme-dark .new-chat {
+    --color-reaction: rgb(255, 255, 255, 0.1);
+    --hover-color-reaction: rgb(255, 255, 255, 0.2);
+    --text-color-reaction: var(--color-text);
+    --color-reaction-chosen: #3390ec;
+    --hover-color-reaction-chosen: #4096ec
+}
+
+.new-chat {
+    display: inline-block;
+    margin: auto;
+    background-color: var(--color-background);
+    border-radius: var(--border-radius-messages);
+}
+
+.new-chat button {
+    max-width: calc(100% - 1.375rem * 2);
+    margin: -1rem 1.375rem 1.375rem;
+}
+
+.new-chat-header h3 {
+    height: var(--header-height);
+    padding: .375rem 25% .5rem 25%;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    font-size: 1.25rem;
+    font-weight: 500;
+    -webkit-user-select: none;
+    user-select: none;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap
+}
+
+@media (min-width: 1921px) {
+    .new-chat {
+        --max-width: calc(30vw - 1rem)
+    }
+}
+
+@media (max-width: 600px) {
+    .new-chat {
+        margin-bottom: .25rem
+    }
+}
+
+.NewChat {
+    height: 100%;
+    overflow: hidden;
+    position: relative
+}
+
+.NewChat-inner {
+    height: calc(100% - var(--header-height));
+    overflow: hidden
+}
+
+.NewChat-inner.step-2 {
+    padding: 0 1.35rem;
+    display: inline-block;
+    flex-direction: row;
+}
+
+.NewChat-inner.step-2 .note, .NewChat-inner.step-2 .error {
+    font-size: .875rem;
+    line-height: 1.25rem;
+    margin: 1.5rem .25rem
+}
+
+.NewChat-inner.step-2 .error {
+    color: var(--color-error)
+}
+
+.NewChat-inner.step-2 .note {
+    margin-top: -0.5625rem;
+    color: var(--color-text-secondary)
+}
+

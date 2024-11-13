@@ -1,5 +1,16 @@
 import {useTranslation} from "react-i18next";
 import {useEffect, useRef, useState} from "react";
+import {gql, useMutation} from "@apollo/client";
+
+const SEND_MESSAGE = gql`
+    mutation SendMessage($token: String!, $chatId: Int!, $content: String!) {
+        sendMessage(token: $token, chatId: $chatId, content: $content) {
+            content
+            authorId
+            timestamp
+        }
+    }
+`
 
 const MessageInput = () => {
     const {t} = useTranslation();
@@ -7,16 +18,21 @@ const MessageInput = () => {
     const [placeholder, setPlaceholder] = useState(t("chat.message-input"));
     const placeholderTextRef = useRef(null);
 
+    const [sendMessage] = useMutation(SEND_MESSAGE, {
+        onCompleted: (data) => {
+            console.log(data)
+        },
+        onError: (error) => {
+            console.error("error", error);
+        }
+    });
+
     useEffect(() => {
         placeholderTextRef.current = document.getElementById("message-placeholder-text");
     })
 
     const updatePlaceholder = (content) => {
         setPlaceholder(content === "" ? t("chat.message-input") : "");
-    }
-
-    const sendMessage = (content) => {
-
     }
 
     return (
@@ -34,14 +50,21 @@ const MessageInput = () => {
                              event.preventDefault();
                              updatePlaceholder(event.currentTarget.textContent);
                          }}
-                         onKeyDown={event => {
+                         onKeyDown={(event) => {
                              const key = event.key;
                              if (key !== "Enter") return;
 
                              event.preventDefault();
-                             event.currentTarget.textContent = "";
+                             sendMessage({
+                                 variables: {
+                                     token: localStorage.getItem("token"),
+                                     chatId: parseInt(localStorage.getItem("current_chat")),
+                                     content: event.currentTarget.textContent
+                                 }
+                             });
+
                              updatePlaceholder("")
-                             sendMessage(event);
+                             event.currentTarget.textContent = "";
                          }}
                     />
                     <span id="message-placeholder-text" className="placeholder-text" dir="auto">

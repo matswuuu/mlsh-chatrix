@@ -27,12 +27,13 @@ repositories {
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
     implementation("org.springframework.boot:spring-boot-starter-data-rest")
+    implementation("org.springframework.boot:spring-boot-starter-websocket:3.3.5")
+    implementation("org.springframework:spring-messaging")
     implementation("org.springframework.boot:spring-boot-starter-graphql")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-web-services")
     implementation("org.springframework.boot:spring-boot-starter-validation")
     implementation("org.springframework.boot:spring-boot-starter-security")
-    implementation("org.springframework.security:spring-security-oauth2-client:6.3.3")
     implementation("org.springframework.boot:spring-boot-starter-webflux")
     implementation("org.springframework.session:spring-session-core")
     implementation("org.springframework.boot:spring-boot-starter-oauth2-resource-server")
@@ -41,7 +42,9 @@ dependencies {
     implementation("io.jsonwebtoken:jjwt-impl:0.12.6")
     implementation("io.jsonwebtoken:jjwt-jackson:0.12.6")
     implementation("jakarta.xml.bind:jakarta.xml.bind-api:4.0.2")
+
     implementation("com.graphql-java-kickstart:graphql-java-tools:13.1.1")
+    implementation("com.graphql-java-kickstart:graphql-java-servlet:16.0.0")
 
     compileOnly("org.projectlombok:lombok")
     developmentOnly("org.springframework.boot:spring-boot-devtools")

@@ -1,6 +1,6 @@
 package dev.matswuuu.mlsh.mlshchatrix.security;
 
-import dev.matswuuu.mlsh.mlshchatrix.user.UserService;
+import dev.matswuuu.mlsh.mlshchatrix.service.user.UserService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -13,7 +13,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
 
-@Component
+//@Component
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @RequiredArgsConstructor
 public class QueryResolver implements WebGraphQlInterceptor {

@@ -4146,25 +4146,25 @@ template {
     top: 1rem
 }
 
-.input-group.touched label, .input-group.error label, .input-group.success label, .input-group .form-control:focus + label, .input-group .form-control.focus + label {
-    transform: scale(0.75) translate(-0.5rem, -2.25rem)
-}
+/*.input-group.touched label, .input-group.error label, .input-group.success label, .input-group .form-control:focus + label, .input-group .form-control.focus + label {*/
+/*    transform: scale(0)*/
+/*}*/
 
-.input-group input::placeholder, .input-group .form-control::placeholder {
-    color: var(--color-placeholders)
-}
+/*.input-group input::placeholder, .input-group .form-control::placeholder {*/
+/*    color: var(--color-placeholders)*/
+/*}*/
 
-.input-group.touched label {
-    color: var(--color-text-secondary)
-}
+/*.input-group.touched label {*/
+/*    color: var(--color-text-secondary)*/
+/*}*/
 
-.input-group.error label {
-    color: var(--color-error) !important
-}
+/*.input-group.error label {*/
+/*    color: var(--color-error) !important*/
+/*}*/
 
-.input-group.success label {
-    color: var(--color-text-green) !important
-}
+/*.input-group.success label {*/
+/*    color: var(--color-text-green) !important*/
+/*}*/
 
 .input-group.disabled {
     opacity: .5;

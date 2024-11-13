@@ -1,10 +1,12 @@
-package dev.matswuuu.mlsh.mlshchatrix.user;
+package dev.matswuuu.mlsh.mlshchatrix.repository.user;
 
+import dev.matswuuu.mlsh.mlshchatrix.entity.chat.Chat;
 import dev.matswuuu.mlsh.mlshchatrix.entity.user.User;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -15,6 +17,8 @@ public interface UserRepository extends MongoRepository<User, UUID> {
 
     boolean existsByEmail(String email);
 
+    boolean existsById(@NotNull UUID id);
+
     Optional<User> findByUsername(String username);
 
     Optional<User> findByEmail(String email);
@@ -24,8 +28,6 @@ public interface UserRepository extends MongoRepository<User, UUID> {
     Optional<User> findByMiddleName(String middleName);
 
     Optional<User> findByLastName(String lastName);
-
-    Optional<User> findByChatListContaining(long chatId);
 
     @NotNull
     @Override

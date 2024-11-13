@@ -7,6 +7,7 @@ import {useTranslation} from "react-i18next";
 import {useEffect, useRef, useState} from "react";
 import {gql, useMutation} from "@apollo/client";
 import {useNavigate} from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
 
 const LOGIN = gql`
     mutation Login($username: String!, $password: String!) {
@@ -27,12 +28,17 @@ const LoginPage = () => {
 
     const [login] = useMutation(LOGIN, {
         onCompleted: (data) => {
-            localStorage.setItem("token", data["login"]);
+            const token = data["login"];
+            localStorage.setItem("token", token);
+
+            const decoded = jwtDecode(token);
+            localStorage.setItem("user_id", decoded["id"]);
+
             setLogged(true);
         },
         onError: (error) => {
             console.error("error", error);
-        },
+        }
     });
 
     useEffect(() => {

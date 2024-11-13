@@ -1,6 +1,7 @@
-package dev.matswuuu.mlsh.mlshchatrix.user;
+package dev.matswuuu.mlsh.mlshchatrix.service.user;
 
 import dev.matswuuu.mlsh.mlshchatrix.entity.user.User;
+import dev.matswuuu.mlsh.mlshchatrix.repository.user.UserRepository;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -34,33 +35,34 @@ public class UserService {
         return userRepository.existsByEmail(email);
     }
 
-    public User findById(UUID id) {
+    public boolean existsById(UUID id) {
+        return userRepository.existsById(id);
+    }
+
+
+    public User getById(UUID id) {
         return userRepository.findById(id).orElse(null);
     }
 
-    public User findByUsername(String username) {
+    public User getByUsername(String username) {
         return userRepository.findByUsername(username).orElse(null);
     }
 
-    public User findByEmail(String email) {
+    public User getByEmail(String email) {
         return validateEmail(email) ?
                 userRepository.findByEmail(email).orElse(null) : null;
     }
 
-    public User findByFirstName(String firstName) {
+    public User getByFirstName(String firstName) {
         return userRepository.findByFirstName(firstName).orElse(null);
     }
 
-    public User findByMiddleName(String middleName) {
+    public User getByMiddleName(String middleName) {
         return userRepository.findByMiddleName(middleName).orElse(null);
     }
 
-    public User findByLastName(String lastName) {
+    public User getByLastName(String lastName) {
         return userRepository.findByLastName(lastName).orElse(null);
-    }
-
-    public User findByChatId(long chatId) {
-        return userRepository.findByChatListContaining(chatId).orElse(null);
     }
 
     public void save(User user) {
@@ -68,7 +70,7 @@ public class UserService {
     }
 
     public UserDetailsService userDetailsService() {
-        return this::findByUsername;
+        return this::getByUsername;
     }
 
 }

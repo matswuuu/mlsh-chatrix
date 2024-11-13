@@ -8239,10 +8239,7 @@ body.no-page-transitions .tools-stacked.animated .Guj4V7W_ {
     background: var(--color-background);
     position: relative;
     z-index: var(--z-middle-header);
-    padding-top: .25rem;
-    padding-bottom: .25rem;
-    padding-left: max(1.4375rem, env(safe-area-inset-left));
-    padding-right: max(.8125rem, env(safe-area-inset-right));
+    padding: .25rem max(.8125rem, env(safe-area-inset-right)) .25rem max(1.4375rem, env(safe-area-inset-left));
     flex-shrink: 0;
     height: 3.5rem
 }

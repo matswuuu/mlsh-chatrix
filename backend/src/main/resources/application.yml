@@ -2,10 +2,14 @@ spring:
   application:
     name: "mlsh-chatrix"
   graphql:
+    websocket:
+      path: "/graphql"
     cors:
       allow-credentials: true
+      allowed-methods: GET, POST
       allowed-origins:
         - "http://localhost:5173"
+        - "http://localhost:8080"
     graphiql:
       enabled: true
   data:
@@ -13,3 +17,6 @@ spring:
       database: "mlsh-chatrix"
       uri: "${MONGODB_URI}"
       uuid-representation: standard
+
+secret:
+  key: "e9Bx7CVDvF52qynPMSzduG8HbhKwc63NtYgkU4sEAXjafQTrpmdZYscuaqkymz79xKeNEhS4b3DWHvrgA852RVXPntULTw6pjfGJ"

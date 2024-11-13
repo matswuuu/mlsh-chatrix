@@ -1,9 +1,10 @@
-package dev.matswuuu.mlsh.mlshchatrix.user;
+package dev.matswuuu.mlsh.mlshchatrix.controller.user;
 
-import dev.matswuuu.mlsh.mlshchatrix.entity.message.Message;
 import dev.matswuuu.mlsh.mlshchatrix.entity.user.User;
 import dev.matswuuu.mlsh.mlshchatrix.exception.user.email.EmailAlreadySetException;
 import dev.matswuuu.mlsh.mlshchatrix.security.JwtService;
+import dev.matswuuu.mlsh.mlshchatrix.service.chat.ChatService;
+import dev.matswuuu.mlsh.mlshchatrix.service.user.UserService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -26,35 +27,31 @@ public class UserController {
     UserService userService;
     PasswordEncoder passwordEncoder;
     JwtService jwtService;
+    private final ChatService chatService;
 
     @QueryMapping
     public User userById(@Argument UUID id) {
-        return userService.findById(id);
+        return userService.getById(id);
     }
 
     @QueryMapping
     public User userByEmail(@Argument String email) {
-        return userService.findByEmail(email);
+        return userService.getByEmail(email);
     }
 
     @QueryMapping
     public User userByFirstName(@Argument String firstName) {
-        return userService.findByFirstName(firstName);
+        return userService.getByFirstName(firstName);
     }
 
     @QueryMapping
     public User userByMiddleName(@Argument String middleName) {
-        return userService.findByMiddleName(middleName);
+        return userService.getByMiddleName(middleName);
     }
 
     @QueryMapping
     public User userByLastName(@Argument String lastName) {
-        return userService.findByLastName(lastName);
-    }
-
-    @QueryMapping
-    public User userByChatId(@Argument long chatId) {
-        return userService.findByChatId(chatId);
+        return userService.getByLastName(lastName);
     }
 
     @QueryMapping
@@ -92,18 +89,12 @@ public class UserController {
     @MutationMapping
     public String login(@Argument String username,
                         @Argument String password) {
-        var user = userService.findByUsername(username);
+        var user = userService.getByUsername(username);
 
         if (user == null || !passwordEncoder.matches(password, user.getPassword()))
             throw new RuntimeException("Invalid credentials");
 
-        return jwtService.generateToken(username);
-    }
-
-    @MutationMapping
-    public Message sendMessage(@Argument long chatId,
-                               @Argument String content) {
-        return null;
+        return jwtService.generateToken(user);
     }
 
 }

@@ -1,72 +1,129 @@
-import React from 'react';
-import LeftColumn from "../../components/left/left-column.jsx";
-import MiddleHeader from "../../components/middle/header/middle-header.jsx";
-import MessageElement from "../../components/message/message-element.jsx";
+import React, {useEffect, useRef, useState} from 'react';
+import MessageElement from "../../components/middle/message/message-element.jsx";
 import MessageInputWrapper from "../../components/middle/input/message-input-wrapper.jsx";
-import Chat from "../../components/chat/chat.js";
 import ChatItem from "../../components/left/chat-item.jsx";
-import Message from "../../components/chat/message.js";
-import User from "../../components/chat/user.js";
-import {useNavigate} from "react-router-dom";
+import LeftColumn from "../../components/left/left-column.jsx";
+import {gql, useLazyQuery, useQuery, useSubscription} from "@apollo/client";
+import MiddleHeader from "../../components/middle/header/middle-header.jsx";
+
+
+const GET_CHATS_BY_USER_ID = gql`
+    query ChatsByUserId($id: ID!) {
+        chatsByUserId(id: $id) {
+            id
+            name
+            members
+        }
+    }
+`;
+
+const NEW_MESSAGES_SUBSCRIPTION = gql`
+    subscription NewMessages($token: String!, $lastMessages: [String]) {
+        newMessages(token: $token, lastMessages: $lastMessages) {
+            content
+            chatId
+            authorId
+            timestamp
+        }
+    }
+`
 
 const ChatPage = () => {
-    const navigate = useNavigate();
+    const [loadedChatsMessages, setLoadedChatsMessages] = useState({});
+    const [currentMessages, setCurrentMessages] = useState([]);
+    const [currentChatId, setCurrentChatId] = useState(null);
 
-    const arrayOfChats = [
-        new Chat("Chat name 1", 2, "", [new Message(1, "Preview message", "author", 1)]),
-        new Chat("Chat name 2", 3, "", [new Message(2, "Preview message 2", "author", 1)]),
-        new Chat("Chat name 3", 4, "", [])
-    ]
+    const leftColumnRef = useRef(null);
+    const middleHeaderRef = useRef(null);
+
+    useSubscription(NEW_MESSAGES_SUBSCRIPTION, {
+        shouldResubscribe: true,
+        variables: {
+          token: localStorage.getItem("token"),
+          lastMessages: Object.keys(loadedChatsMessages)
+              .map((key) => `${key}:${loadedChatsMessages[key].length - 1}`)
+        },
+        onError: (error) => {
+            console.error(error)
+        },
+        onData: ({data}) => {
+            data.data["newMessages"].forEach((rawMessage) => {
+                const chatId = rawMessage.chatId;
+                let loadedMessages = loadedChatsMessages[chatId];
+
+                const message = <MessageElement
+                    key={`message-${chatId}:${loadedMessages.length}`} message={rawMessage}/>
+                loadedMessages = loadedMessages.concat(message);
+                loadedChatsMessages[chatId] = loadedMessages;
+
+                setLoadedChatsMessages(loadedChatsMessages);
+                if (currentChatId === chatId) setCurrentMessages(loadedChatsMessages[chatId]);
+            })
+        },
+    });
+
+    useQuery(GET_CHATS_BY_USER_ID, {
+        variables: {
+            id: localStorage.getItem("user_id")
+        },
+        onCompleted: (data) => {
+            data["chatsByUserId"].forEach((chat) => {
+                loadedChatsMessages[chat.id] = []
+                setLoadedChatsMessages(loadedChatsMessages)
+            })
+
+            data["chatsByUserId"]
+                .map((chat) => <ChatItem
+                    chat={chat}
+                    onClick={(event) => {
+                        event.preventDefault();
+
+                        setCurrentMessages([]);
+                        setCurrentMessages(loadedChatsMessages[chat.id]);
+                        setCurrentChatId(chat.id);
+                        middleHeaderRef.current.setCurrentChat(chat);
+                    }}
+                />)
+                .forEach((chat) => {
+                    leftColumnRef.current.addChat(chat)
+                })
+        },
+        onError: (error) => {
+            console.debug(error);
+        }
+    });
 
     return (
         <div className="Transition full-height">
             <div id="Main"
                  className="opacity-transition fast right-column-not-shown right-column-not-open Transition_slide-active left-column-not-open left-column-not-shown">
-                <LeftColumn chats={arrayOfChats.map(chat => <ChatItem chat={chat}/>)}/>
+                <LeftColumn ref={leftColumnRef}/>
+
+
+                {/*<NewChat/>*/}
+
                 <div id="MiddleColumn" className="mask-image-disabled">
                     <div className="C6IaXYew nXhZtCma"></div>
                     <div id="middle-column-portals"></div>
                     <div className="messages-layout">
-                        <MiddleHeader chat={
-                            new Chat("123", 123, "123", [])
-                        }/>
+                        <MiddleHeader ref={middleHeaderRef}/>
                         <div className="Transition">
                             <div className="Transition_slide Transition_slide-active">
                                 <div className="MessageList custom-scroll with-default-bg scrolled"
                                      data-normal-height="702.734375">
                                     <div className="messages-container">
-                                        <div className="backwards-trigger"></div>
-                                        <div className="message-date-group">
-                                            {/*<div className="sticky-date interactive">*/}
-                                            {/*    <span dir="auto">Today</span>*/}
-                                            {/*</div>*/}
-
-                                            <MessageElement
-                                                message={new Message(1, "Preview message", new User(1, "123", "123", "123", "123", ""), 1)}
-                                            />
-                                        </div>
-                                        {/*<div className="forwards-trigger"></div>*/}
-                                        {/*<div className="fab-trigger"></div>*/}
+                                        <div className="backwards-trigger"/>
+                                        <div className="message-date-group">{currentMessages}</div>
                                     </div>
                                 </div>
                                 <div className="middle-column-footer">
                                     <div className="Composer shown mounted">
+                                        <MessageInputWrapper/>
                                         <div className="Menu SendAsMenu">
-                                            <div role="presentation" className="bubble menu-container custom-scroll opacity-transition fast not-shown not-open">
+                                            <div role="presentation"
+                                                 className="bubble menu-container custom-scroll opacity-transition fast not-shown not-open">
                                                 <div className="send-as-title" dir="auto">Send message as...</div>
                                             </div>
-                                        </div>
-                                        <MessageInputWrapper/>
-                                    </div>
-                                    <div className="MessageSelectToolbar with-composer">
-                                        <div className="MessageSelectToolbar-inner">
-                                            <button type="button"
-                                                    className="Button default translucent round"
-                                                    aria-label="Exit select mode"
-                                                    title="Exit select mode">
-                                                <i className="icon icon-close"/>
-                                            </button>
-                                            <span className="MessageSelectToolbar-count" title="MessagesSelected">MessagesSelected</span>
                                         </div>
                                     </div>
                                 </div>
@@ -106,14 +163,6 @@ const ChatPage = () => {
                                         </button>
                                     </div>
                                 </div>
-                            </div>
-                            <div>
-                                <button type="button"
-                                        className="Button smaller translucent round"
-                                        aria-label="Jump to Date"
-                                        title="Jump to Date">
-                                    <i className="icon icon-calendar" aria-hidden="true"/>
-                                </button>
                             </div>
                         </div>
                     </div>

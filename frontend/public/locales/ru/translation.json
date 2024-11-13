@@ -59,6 +59,12 @@
       "add": "Добавить вложение",
       "photo-or-video": "Фото или видео",
       "file": "Файл"
+    },
+    "new-chat": {
+      "create-new-chat": "Новый чат",
+      "set-avatar": "Установить аватар",
+      "chat-name": "Имя чата",
+      "create-chat": "Создать чат"
     }
   },
 

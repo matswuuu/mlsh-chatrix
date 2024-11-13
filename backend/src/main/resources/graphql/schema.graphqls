@@ -1,31 +1,55 @@
 type Query {
+    existsByUsername(username: String!): Boolean
+
     userById(id: ID!): User
     userByEmail(email: String!): User
     userByFirstName(firstName: String!): User
     userByMiddleName(middleName: String!): User
     userByLastName(lastName: String!): User
-    userByChatId(chatId: Int!): User
+    chatsByUserId(id: ID!): [Chat]
 
-    existsByUsername(username: String!): Boolean
+    chatById(id: Int!): [Chat]
+    messagesByChatId(
+        token: String!
+        id: Int!
+    ): [Message]
+    limitedMessagesByChatId(
+        token: String!
+        id: Int!
+        fromId: Int!
+    ): [Message]
 }
 
 type Mutation {
     register(
-        firstName: String!,
-        middleName: String = "",
-        lastName: String!,
-        password: String!,
+        firstName: String!
+        middleName: String = ""
+        lastName: String!
+        password: String!
         email: String = ""
     ): User
     login(
-        username: String!,
+        username: String!
         password: String!
     ): String
 
+    createNewChat(
+        token: String!
+        chatName: String!
+    ): Chat
     sendMessage(
+        token: String!
         chatId: Int!
         content: String!
     ): Message
+}
+
+type Subscription {
+    # returns `chatId:messageId`
+    newMessages(
+        token: String!
+        lastMessages: [String]
+    ): [Message]
 }
 
 type User {
@@ -36,12 +60,18 @@ type User {
     password: String!
     email: String
     imageUrl: String
-    chatList: [Int]!
+    chats: [Int]!
 }
 
 type Message {
-    content: String!
-    chatId: Int!
-    authorId: ID!
-    timestamp: Int!
+    content: String
+    chatId: Int
+    authorId: ID
+    timestamp: Float
+}
+
+type Chat {
+    id: Int!
+    name: String!
+    members: [ID]!
 }

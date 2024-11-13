@@ -1,14 +1,10 @@
 import React from "react";
 import {useTranslation} from "react-i18next";
 import PropTypes from "prop-types";
-import Chat from "../../chat/chat.js";
+import Chat from "../../../data/chat/chat.js";
 
 const ChatInfo = ({chat}) => {
     const {t} = useTranslation();
-
-    ChatInfo.propTypes = {
-        chat: PropTypes.objectOf(Chat).isRequired
-    };
 
     return (
         <div className="chat-info-wrapper">
@@ -16,20 +12,20 @@ const ChatInfo = ({chat}) => {
                 <div className="Avatar size-medium peer-color-2 interactive">
                     <div className="inner">
                         <img
-                            src={chat.image}
+                            src={chat ? chat.image : ""}
                             className="Avatar__media avatar-media opacity-transition slow open shown"
-                            alt={chat.name}
+                            alt={chat ? chat.name : ""}
                             decoding="async"
                             draggable="false"/>
                     </div>
                 </div>
                 <div className="info">
                     <div className="title QljEeKI5">
-                        <h3 dir="auto" role="button" className="fullName AS54Cntu SgogACy_">{chat.name}</h3>
+                        <h3 dir="auto" role="button" className="fullName AS54Cntu SgogACy_">{chat ? chat.name : ""}</h3>
                     </div>
                     <span className="status">
                         <span className="group-status">
-                            {t("chat.header.members-amount", { members: `${chat.members}` })}
+                            {t("chat.header.members-amount", { members: `${chat ? chat.members.length : 0}` })}
                         </span>
                     </span>
                 </div>
