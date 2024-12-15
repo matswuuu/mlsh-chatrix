@@ -3,8 +3,9 @@
     width: 100%;
     color: rgba(var(--color-text-secondary-rgb), 0.5);
     background-color: var(--color-chat-hover);
-    border: 2px solid var(--color-chat-hover);
-    border-radius: 1.375rem;
+    box-shadow: 0 1px 2px var(--color-default-shadow);
+    border: solid 1px var(--light-gray);
+    border-radius: 0.263rem;
     transition: border-color .15s ease;
     display: flex;
     align-items: center;

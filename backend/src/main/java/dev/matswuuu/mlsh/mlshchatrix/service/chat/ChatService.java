@@ -8,6 +8,7 @@ import dev.matswuuu.mlsh.mlshchatrix.service.user.UserService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,10 +22,12 @@ public class ChatService {
     ChatRepository chatRepository;
     UserService userService;
 
+    @Cacheable("chats")
     public Chat getChatById(long id) {
         return chatRepository.findById(id).orElse(null);
     }
 
+    @Cacheable(value = "chats", key = "chat.id")
     public Chat save(Chat chat) {
         return chatRepository.save(chat);
     }
@@ -33,6 +36,7 @@ public class ChatService {
         return chatRepository.findAllById(ids);
     }
 
+    @Cacheable("chats")
     public List<Message> getMessagesByChatId(long chatId) {
         return getChatById(chatId).getMessages();
     }
@@ -45,6 +49,7 @@ public class ChatService {
         chatRepository.addMessage(chatId, message);
     }
 
+    @Cacheable(value = "chats", key = "chat.id")
     public void addMember(UUID userId, Chat chat) {
         var user = userService.getById(userId);
         user.getChats().add(chat.getId());

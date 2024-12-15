@@ -1,4 +1,4 @@
-.theme-dark .new-chat {
+.theme-dark .profile-info {
     --color-reaction: rgb(255, 255, 255, 0.1);
     --hover-color-reaction: rgb(255, 255, 255, 0.2);
     --text-color-reaction: var(--color-text);
@@ -6,16 +6,22 @@
     --hover-color-reaction-chosen: #4096ec
 }
 
-.new-chat {
+.profile-info {
+    position: absolute;
     width: 350px;
 
-    display: inline-block;
-    margin: auto;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+
+    border: solid 1px var(--color-primary);
+    border-radius: 0.263rem;
+    box-shadow: 0 1px 2px var(--color-default-shadow);
     background-color: var(--color-background);
-    border-radius: var(--border-radius-messages);
 }
 
-.new-chat-header h3 {
+.profile-info-header h3 {
     height: var(--header-height);
     padding: .375rem 25% .5rem 25%;
     display: flex;
@@ -31,13 +37,13 @@
 }
 
 @media (min-width: 1921px) {
-    .new-chat {
-        /*--max-width: calc(30vw - 1rem)*/
+    .profile-info {
+        --max-width: calc(30vw - 1rem)
     }
 }
 
 @media (max-width: 600px) {
-    .new-chat {
+    .profile-info {
         margin-bottom: .25rem
     }
 }

@@ -20,6 +20,7 @@ import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @Slf4j
@@ -55,7 +56,10 @@ public class MessageController {
                             var messageId = getId(str, 1);
 
                             var chat = chatService.getChatById(chatId);
-                            var messages = chat.getMessages();
+                            var messages = chat.getMessages().stream()
+                                    .filter(m -> user.getOptions().containsAll(m.getOptions()))
+                                    .toList();
+
                             var lastIndex = messages.size();
 
                             if (messageId != lastIndex)

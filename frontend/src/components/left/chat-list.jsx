@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import PropTypes from "prop-types";
 import Chat from "../../data/chat/chat.js";
 import ChatSearch from "./search/chat-search.jsx";
+import ChatItem from "./chat-item.jsx";
 
 class ChatList extends Component {
 

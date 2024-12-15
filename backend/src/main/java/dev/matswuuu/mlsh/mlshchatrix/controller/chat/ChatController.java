@@ -19,6 +19,7 @@ import reactor.core.publisher.Flux;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Controller
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
@@ -69,14 +70,34 @@ public class ChatController {
     }
 
     @MutationMapping
+    public Chat joinChat(@Argument String token,
+                         @Argument long chatId) {
+        var userId = jwtService.extractId(token);
+        if (!userService.existsById(userId)) return null;
+
+        var chat = chatService.getChatById(chatId);
+        if (chat == null) return null;
+
+        chatService.addMember(userId, chat);
+        return chat;
+    }
+
+    @MutationMapping
     public Message sendMessage(@Argument String token,
                                @Argument long chatId,
-                               @Argument String content) {
+                               @Argument String content,
+                               @Argument List<String> options) {
+        if (content.isEmpty()) return null;
+
         var authorId = jwtService.extractId(token);
         var user = userService.getById(authorId);
         if (!user.getChats().contains(chatId)) return null;
 
-        var message = new Message(chatId, authorId);
+        var chat = chatService.getChatById(chatId);
+        if (user.getRole().ordinal() < chat.getRole()) return null;
+
+        var message = new Message(chatId, authorId,
+                options == null ? new ArrayList<>() : options);
         message.setContent(content);
         chatService.addMessage(chatId, message);
 
@@ -85,14 +106,17 @@ public class ChatController {
 
     @MutationMapping
     public List<Message> limitedMessagesByChatId(@Argument String token,
-                                                 @Argument long chatId,
+                                                 @Argument long id,
                                                  @Argument int fromId) {
         var authorId = jwtService.extractId(token);
         var user = userService.getById(authorId);
-        if (!user.getChats().contains(chatId)) return null;
+        if (!user.getChats().contains(id)) return null;
 
-        var chat = chatService.getChatById(chatId);
-        var messages = chat.getMessages();
+        var chat = chatService.getChatById(id);
+        var messages = chat.getMessages().stream()
+                .filter(m -> user.getOptions().containsAll(m.getOptions()))
+                .collect(Collectors.toList());
+
         return messages.subList(fromId, messages.size() - 1);
     }
 

@@ -5,6 +5,7 @@ import lombok.experimental.FieldDefaults;
 import lombok.experimental.NonFinal;
 import org.springframework.data.annotation.PersistenceCreator;
 
+import java.util.Collection;
 import java.util.UUID;
 
 @Setter
@@ -16,13 +17,15 @@ public class Message {
     long chatId;
     UUID authorId;
     long timestamp;
+    Collection<String> options;
 
     @NonFinal
     String content;
 
-    public Message(long chatId, UUID authorId) {
+    public Message(long chatId, UUID authorId, Collection<String> options) {
         this.chatId = chatId;
         this.authorId = authorId;
+        this.options = options;
         this.timestamp = System.currentTimeMillis();
     }
 

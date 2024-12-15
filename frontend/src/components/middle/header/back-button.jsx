@@ -1,12 +1,11 @@
 import React from "react";
 
-const BackButton = () => {
+const BackButton = ({onClick}) => {
     return (
         <div className="back-button">
             <button type="button"
                     className="Button smaller translucent round"
-                    aria-label="Back"
-                    title="Back">
+                    onClick={onClick}>
                 <div className="animated-close-icon state-back"/>
             </button>
         </div>

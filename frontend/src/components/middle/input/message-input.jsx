@@ -1,6 +1,8 @@
 import {useTranslation} from "react-i18next";
-import {useEffect, useRef, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import {gql, useMutation} from "@apollo/client";
+import Select from "react-select";
+import "./option/option-selection.css"
 
 const SEND_MESSAGE = gql`
     mutation SendMessage($token: String!, $chatId: Int!, $content: String!) {
@@ -8,20 +10,18 @@ const SEND_MESSAGE = gql`
             content
             authorId
             timestamp
+            options
         }
     }
 `
 
-const MessageInput = () => {
+const MessageInput = ({getOptions}) => {
     const {t} = useTranslation();
 
     const [placeholder, setPlaceholder] = useState(t("chat.message-input"));
     const placeholderTextRef = useRef(null);
 
     const [sendMessage] = useMutation(SEND_MESSAGE, {
-        onCompleted: (data) => {
-            console.log(data)
-        },
         onError: (error) => {
             console.error("error", error);
         }
@@ -55,11 +55,16 @@ const MessageInput = () => {
                              if (key !== "Enter") return;
 
                              event.preventDefault();
+
+                             const content = event.currentTarget.textContent;
+                             if (content === "") return;
+
                              sendMessage({
                                  variables: {
                                      token: localStorage.getItem("token"),
                                      chatId: parseInt(localStorage.getItem("current_chat")),
-                                     content: event.currentTarget.textContent
+                                     content: content,
+                                     options: getOptions()
                                  }
                              });
 

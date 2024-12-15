@@ -1,13 +1,54 @@
-import React from "react";
+import React, {useState} from "react";
 import "./user-profile.css"
 import {useTranslation} from "react-i18next";
 import UserProfileItem from "./user-profile-item.jsx";
+import BackButton from "../../middle/header/back-button.jsx";
+import {gql, useQuery} from "@apollo/client";
+import ChatItem from "../../left/chat-item.jsx";
 
-const UserProfile = () => {
+const GET_USER_BY_ID = gql`
+    query GetUserById($id: ID!) {
+        userById(id: $id) {
+            id
+            username
+            firstName
+            middleName
+            lastName
+            options
+        }
+    }
+`;
+
+const UserProfile = ({userId, onBack}) => {
     const [t] = useTranslation();
+    const [avatar, setAvatar] = useState("");
+    const [fullName, setFullName] = useState("...");
+    const [username, setUsername] = useState("...");
+
+    useQuery(GET_USER_BY_ID, {
+        variables: {
+            id: userId
+        },
+        onCompleted: (data) => {
+            const user = data["userById"];
+            setUsername("@" + user.username)
+            setFullName(user.lastName + " " + user.firstName + " " + user.middleName);
+        },
+        onError: (error) => {
+            console.debug(error);
+        }
+    });
+
 
     return (
-        <div className="profile-info new-chat">
+        <div className="profile-info">
+            <div className="MiddleHeader" style={{borderRadius: "0.263rem"}}>
+                <div className="Transition">
+                    <div className="Transition_slide Transition_slide-active">
+                        <BackButton onClick={onBack}/>
+                    </div>
+                </div>
+            </div>
             <div className="ProfileInfo">
                 <div className="GBGLnrA7">
                     <div className="Transition">
@@ -28,9 +69,6 @@ const UserProfile = () => {
                 </div>
                 <div className="UcyW7tVh" dir="auto">
                     <div className="title QljEeKI5">
-                        <h3 dir="auto" role="button" className="fullName AS54Cntu SgogACy_ vr53L_9p">
-                            test test test
-                        </h3>
                         <div className="CEFe1FhH custom-emoji emoji"
                              data-entity-type="MessageEntityCustomEmoji"
                              data-document-id="5267183875603322563"
@@ -45,8 +83,18 @@ const UserProfile = () => {
                 </div>
             </div>
             <div className="ChatExtra">
-                <UserProfileItem title={"@matswuuuu"} subtitle={"Имя пользователя"} icon="icon-phone"/>
-                <UserProfileItem title={"9М2"} subtitle={"Класс"} icon="icon-phone"/>
+                <UserProfileItem
+                    title={fullName}
+                    subtitle={t("chat.user-profile.full-name")}
+                    icon="icon-phone"/>
+                <UserProfileItem
+                    title={username}
+                    subtitle={t("chat.user-profile.username")}
+                    icon="icon-phone"/>
+                <UserProfileItem
+                    title={"9М2"}
+                    subtitle={"Класс"}
+                    icon="icon-phone"/>
             </div>
         </div>
 );

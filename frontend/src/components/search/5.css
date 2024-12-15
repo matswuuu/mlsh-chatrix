@@ -5747,7 +5747,7 @@ body.is-ios .chat-list.forum-panel-open .ListItem::after, body.is-android .chat-
 
 @font-face {
     font-family: "icons";
-    src: url(icons.01afc5f8cedef2667482.woff2) format("woff2"), url(icons.e8159f7d0f0523fc4598.woff) format("woff");
+    /*src: url(icons.01afc5f8cedef2667482.woff2) format("woff2"), url(icons.e8159f7d0f0523fc4598.woff) format("woff");*/
     font-weight: normal;
     font-style: normal;
     font-display: block

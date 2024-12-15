@@ -22,19 +22,21 @@ public class User implements UserDetails {
 
     @Id
     final UUID id;
-    final Collection<Long> chats;
+    final List<Long> chats;
+    final Collection<String> options;
 
     String username;
     String firstName, middleName, lastName;
     String password;
     String email;
-    String birthDate;
+    long birthDate;
     String imageUrl;
     UserRole role;
 
     public User() {
         this.id = UUID.randomUUID();
-        this.chats = new HashSet<>();
+        this.chats = Collections.singletonList(0L);
+        this.options = new HashSet<>();
     }
 
     @Override

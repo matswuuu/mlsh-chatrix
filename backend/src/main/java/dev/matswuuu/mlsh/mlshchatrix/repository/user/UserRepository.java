@@ -4,8 +4,10 @@ import dev.matswuuu.mlsh.mlshchatrix.entity.chat.Chat;
 import dev.matswuuu.mlsh.mlshchatrix.entity.user.User;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -28,6 +30,9 @@ public interface UserRepository extends MongoRepository<User, UUID> {
     Optional<User> findByMiddleName(String middleName);
 
     Optional<User> findByLastName(String lastName);
+
+    @Query("{ 'options': { $all: ?0 } }")
+    Optional<List<User>> findAllByOptionsContainingAll(Collection<String> options);
 
     @NotNull
     @Override

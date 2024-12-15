@@ -10,13 +10,27 @@ spring:
       allowed-origins:
         - "http://localhost:5173"
         - "http://localhost:8080"
+        - "http://localhost:8064"
     graphiql:
       enabled: true
   data:
     mongodb:
       database: "mlsh-chatrix"
-      uri: "${MONGODB_URI}"
+      uri: "mongodb+srv://root:NbvfVfqy12@cluster0.7fuk9hw.mongodb.net/"
       uuid-representation: standard
-
 secret:
   key: "e9Bx7CVDvF52qynPMSzduG8HbhKwc63NtYgkU4sEAXjafQTrpmdZYscuaqkymz79xKeNEhS4b3DWHvrgA852RVXPntULTw6pjfGJ"
+mlsh:
+  chatrix:
+    options:
+      GRADES:
+        - "9M1"
+        - "9M2"
+      LANGUAGES:
+        - "JAPANESE"
+        - "KOREAN"
+        - "CHINESE"
+        - "FRENCH"
+        - "GERMAN"
+#server:
+#  port: 8064

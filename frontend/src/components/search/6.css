@@ -666,24 +666,6 @@ body.cursor-ew-resize .ListItem:not(.disabled):not(.is-static) .ListItem-button 
     cursor: var(--custom-cursor, ew-resize) !important
 }
 
-@media (hover: hover) {
-    .ListItem:not(.disabled):not(.is-static) .ListItem-button:hover, .ListItem:not(.disabled):not(.is-static) .ListItem-button:focus-visible {
-        --background-color: var(--color-chat-hover)
-    }
-}
-
-@media (max-width: 600px) {
-    .ListItem:not(.disabled):not(.is-static) .ListItem-button.active {
-        --background-color: var(--color-chat-hover)
-    }
-}
-
-@media (min-width: 600px) {
-    .ListItem:not(.has-ripple):not(.is-static) .ListItem-button:active, body.no-page-transitions .ListItem .ListItem-button:active {
-        --background-color: var(--color-item-active) !important
-    }
-}
-
 .ListItem.has-menu-open .ListItem-button {
     --background-color: var(--color-chat-hover)
 }
@@ -699,14 +681,6 @@ body.cursor-ew-resize .ListItem:not(.disabled):not(.is-static) .ListItem-button 
 
 .ListItem.narrow .ListItem-main-icon {
     margin-inline-end: 1.75rem
-}
-
-.ListItem.inactive {
-    pointer-events: none
-}
-
-.ListItem.focus {
-    --background-color: var(--color-chat-hover)
 }
 
 .ListItem.destructive .ListItem-button {

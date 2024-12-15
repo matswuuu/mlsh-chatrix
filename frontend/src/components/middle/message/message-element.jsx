@@ -4,11 +4,11 @@ export default class MessageElement extends Component {
 
     constructor(props) {
         super(props);
-        this.message = props.message;
+        this.props = props;
     }
 
     getChatId() {
-        return this.message.chatId;
+        return this.props.message.chatId;
     }
 
     getFormatedDate(timestamp) {
@@ -22,18 +22,22 @@ export default class MessageElement extends Component {
 
     render() {
         return (
-            <div className="Message message-list-item allow-selection last-in-group last-in-list shown open">
+            <div className={`Message message-list-item allow-selection last-in-group last-in-list shown open
+             ${localStorage.getItem("user_id") === this.props.message.authorId ? "self" : ""}`}
+            >
                 <div className="bottom-еmarker"
                      data-should-update-views="false"
                 />
                 <div className="message-select-control"/>
-                <div className="Avatar size-small peer-color-4 interactive" data-peer-id="623689175">
-                    <div className="inner">
+                <div className="Avatar size-small peer-color-4 interactive">
+                    <div className="inner"
+                         onClick={this.props.onAvatarClick}>
                         {/* todo: set image by const url*/}
-                        {/*<img src={message.author.image}*/}
-                        {/*    className="Avatar__media avatar-media opacity-transition slow open shown"*/}
-                        {/*    alt="" decoding="async" draggable="false"*/}
-                        {/*/>*/}
+                        <img
+                            // src={message.author.image}
+                            // className="Avatar__media avatar-media opacity-transition slow open shown"
+                            // alt="" decoding="async" draggable="false"
+                        />
                     </div>
                 </div>
                 <div className="message-content-wrapper can-select-text">
@@ -41,9 +45,9 @@ export default class MessageElement extends Component {
                          dir="auto">
                         <div className="content-inner" dir="auto">
                             <div className="text-content clearfix with-meta" dir="auto">
-                                {this.message.content}
+                                {this.props.message.content}
                                 <span className="MessageMeta" dir="ltr" data-ignore-on-paste="true">
-                                <span className="message-time">{this.getFormatedDate(this.message.timestamp)}</span>
+                                <span className="message-time">{this.getFormatedDate(this.props.message.timestamp)}</span>
                             </span>
                             </div>
                         </div>

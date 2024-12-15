@@ -6,6 +6,7 @@ type Query {
     userByFirstName(firstName: String!): User
     userByMiddleName(middleName: String!): User
     userByLastName(lastName: String!): User
+    usersByOptions(options: [String]!): [User]!
     chatsByUserId(id: ID!): [Chat]
 
     chatById(id: Int!): [Chat]
@@ -37,10 +38,15 @@ type Mutation {
         token: String!
         chatName: String!
     ): Chat
+    joinChat(
+        token: String!
+        chatId: Int!
+    ): Chat
     sendMessage(
         token: String!
         chatId: Int!
         content: String!
+        options: [String]
     ): Message
 }
 
@@ -54,13 +60,15 @@ type Subscription {
 
 type User {
     id: ID!
+    username: String!
     firstName: String!
     middleName: String
     lastName: String!
     password: String!
     email: String
-    imageUrl: String
     chats: [Int]!
+    options: [String]!
+    role: String!
 }
 
 type Message {
@@ -68,10 +76,18 @@ type Message {
     chatId: Int
     authorId: ID
     timestamp: Float
+    options: [String]!
 }
 
 type Chat {
     id: Int!
     name: String!
     members: [ID]!
+    role: Int!
+    sendOptions: [SelectionOption]!
+}
+
+type SelectionOption {
+    value: String!
+    name: String!
 }

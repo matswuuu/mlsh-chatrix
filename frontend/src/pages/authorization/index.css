@@ -550,3 +550,6 @@ footer .payment-processing {
   margin-bottom: 0.8421rem;
 }
 
+.disabled {
+  pointer-events: none;
+}

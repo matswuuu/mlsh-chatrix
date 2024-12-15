@@ -1,6 +1,7 @@
 package dev.matswuuu.mlsh.mlshchatrix.entity.chat;
 
 import dev.matswuuu.mlsh.mlshchatrix.entity.chat.message.Message;
+import dev.matswuuu.mlsh.mlshchatrix.entity.user.UserRole;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import lombok.experimental.NonFinal;
@@ -24,6 +25,8 @@ public class Chat {
     long creationTimestamp;
     List<ChatMember> members;
     List<Message> messages;
+    int role;
+    List<SelectionValue> sendOptions;
 
     @NonFinal
     UUID ownerId;
@@ -35,6 +38,12 @@ public class Chat {
         this.creationTimestamp = System.currentTimeMillis();
         this.members = new ArrayList<>();
         this.messages = new ArrayList<>();
+        this.role = UserRole.STUDENT.ordinal();
+        this.sendOptions = new ArrayList<>();
+    }
+
+    public record SelectionValue(String value, String name) {
+
     }
 
 }

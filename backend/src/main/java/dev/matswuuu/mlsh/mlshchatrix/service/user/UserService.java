@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
+import java.util.List;
 import java.util.UUID;
 import java.util.regex.Pattern;
 
@@ -63,6 +65,10 @@ public class UserService {
 
     public User getByLastName(String lastName) {
         return userRepository.findByLastName(lastName).orElse(null);
+    }
+
+    public Collection<User> getAllByOptionsContainingAll(Collection<String> option) {
+        return userRepository.findAllByOptionsContainingAll(option).orElse(List.of());
     }
 
     public void save(User user) {

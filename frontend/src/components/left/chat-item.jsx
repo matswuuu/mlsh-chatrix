@@ -25,7 +25,7 @@ const ChatItem = ({chat, onClick}) => {
                     </div>
                     <div className="subtitle">
                         <div className="status _1817Hwgd">
-                            {/*<span className="">{getPreviewMessage(chat.messages).content}</span>*/}
+                            <span className="">{getPreviewMessage(chat.messages).content}</span>
                         </div>
                     </div>
                 </div>

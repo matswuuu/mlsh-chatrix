@@ -67,6 +67,7 @@ public class JwtService {
         var claims = new HashMap<String, Object>();
         claims.put("username", user.getUsername());
         claims.put("id", user.getId());
+        claims.put("role", user.getRole().ordinal());
 
         return Jwts.builder()
                 .claims(claims)

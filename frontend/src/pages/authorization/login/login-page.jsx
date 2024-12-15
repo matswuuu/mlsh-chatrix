@@ -33,6 +33,7 @@ const LoginPage = () => {
 
             const decoded = jwtDecode(token);
             localStorage.setItem("user_id", decoded["id"]);
+            localStorage.setItem("role", decoded["role"]);
 
             setLogged(true);
         },

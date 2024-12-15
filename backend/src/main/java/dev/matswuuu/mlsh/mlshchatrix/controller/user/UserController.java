@@ -15,6 +15,8 @@ import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 
+import java.util.Collection;
+import java.util.List;
 import java.util.UUID;
 
 @Controller
@@ -27,7 +29,6 @@ public class UserController {
     UserService userService;
     PasswordEncoder passwordEncoder;
     JwtService jwtService;
-    private final ChatService chatService;
 
     @QueryMapping
     public User userById(@Argument UUID id) {
@@ -57,6 +58,11 @@ public class UserController {
     @QueryMapping
     public boolean existsByUsername(@Argument String username) {
         return userService.existsByUsername(username.toLowerCase());
+    }
+
+    @QueryMapping
+    public Collection<User> usersByOptions(@Argument List<String> options) {
+        return userService.getAllByOptionsContainingAll(options);
     }
 
     @MutationMapping
