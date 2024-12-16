@@ -16,7 +16,7 @@ spring:
   data:
     mongodb:
       database: "mlsh-chatrix"
-      uri: "mongodb+srv://root:NbvfVfqy12@cluster0.7fuk9hw.mongodb.net/"
+      uri: ""
       uuid-representation: standard
 secret:
   key: "e9Bx7CVDvF52qynPMSzduG8HbhKwc63NtYgkU4sEAXjafQTrpmdZYscuaqkymz79xKeNEhS4b3DWHvrgA852RVXPntULTw6pjfGJ"
